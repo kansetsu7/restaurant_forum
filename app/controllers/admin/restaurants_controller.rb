@@ -6,12 +6,12 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def new
-    @restaurants = Restaurant.new
+    @restaurant = Restaurant.new
   end
 
   def create
-    @restaurants = Restaurant.new(restaurant_params)
-    if @restaurants.save
+    @restaurant = Restaurant.new(restaurant_params)
+    if @restaurant.save
       flash[:notice] = "restaurant was successfully created"
       redirect_to admin_restaurant_path
     else

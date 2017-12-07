@@ -9,18 +9,18 @@
 
 <%= form_for [:admin, @restaurant] do |f| %>
   <%= f.label :name, "Name" %>
-  <%= text_field :name %>
+  <%= f.text_field :name %>
 
   <%= f.label :tel, "Tel" %>
-  <%= text_field :tel %>
+  <%= f.text_field :tel %>
 
   <%= f.label :address, "Address" %>
-  <%= text_field :address %>
+  <%= f.text_field :address %>
 
   <%= f.label :opening_hours, "Oening Hours" %>
-  <%= text_field :opening_hours %>
+  <%= f.text_field :opening_hours %>
 
   <%= f.label :description, "Description" %>
-  <%= text_field :description %>
-  <%= submit %>
+  <%= f.text_field :description %>
+  <%= f.submit %>
 <% end %>
