@@ -22,5 +22,10 @@
 
   <%= f.label :description, "Description" %>
   <%= f.text_field :description %>
+
+  <%= f.label :image, "Photo" %>
+  <%= image_tag @restaurant.image, width: '300px' if @restaurant.image? %>
+  <%= f.file_field :image %>
+  
   <%= f.submit %>
 <% end %>
