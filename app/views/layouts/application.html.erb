@@ -9,6 +9,42 @@
   </head>
 
   <body>
+    <!-- Navbar -->
+    <nav class="navbar-fixed-top my-nav navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+          <a class="navbar-brand" href="/">Fake yelp</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="pull-right nav navbar-nav">
+            <li>
+              <!-- Button for admin to switch between front and back -->
+              <% if current_user %>
+                <% if current_user.role == 'admin' %>
+                  <% if request.url.include? 'admin' %>
+                    <%= link_to "前台視角", root_path %>
+                  <% else %>
+                    <%= link_to "進入後台", admin_restaurants_path %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </li>
+            <li>
+              <!-- <a class="btn btn-default" href="#personality" role="button" id="nav-btn">個人特質</a> -->
+            </li>
+            <li>
+              <!-- <a class="btn btn-default" href="#contact" role="button" id="nav-btn">與我聯繫</a> -->
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+<!--  -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     
