@@ -22,24 +22,41 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="pull-right nav navbar-nav">
-            <li>
-              <!-- Button for admin to switch between front and back -->
-              <% if current_user %>
+            <% if current_user %>
+              <li>
+                <!-- Button for admin to switch between front and back -->
                 <% if current_user.role == 'admin' %>
                   <% if request.url.include? 'admin' %>
+                    <!-- Computer Upload by Andrejs Kirma from the Noun Project -->
                     <%= link_to "前台視角", root_path %>
                   <% else %>
+                  <!-- Computer Download by Andrejs Kirma from the Noun Project -->
                     <%= link_to "進入後台", admin_restaurants_path %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </li>
-            <li>
-              <!-- <a class="btn btn-default" href="#personality" role="button" id="nav-btn">個人特質</a> -->
-            </li>
-            <li>
-              <!-- <a class="btn btn-default" href="#contact" role="button" id="nav-btn">與我聯繫</a> -->
-            </li>
+              </li>
+              <li>
+                <span>
+                  <p><%= current_user.email %></p>
+                  <% if current_user.role == 'admin' %>
+                    <p>管理員</p>
+                  <% else %>  
+                    <p>一般使用者</p>
+                  <% end %>
+                </span>
+              </li>
+              <li>
+                <%= link_to('修改密碼', edit_user_registration_path) %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do  %>
+                  <i class="glyphicon glyphicon-log-out"></i>
+                <% end %>
+              </li>
+            <% else %>
+              <li><%= link_to('註冊', new_user_registration_path) %></li>
+              <li><%= link_to('登入', new_user_session_path) %></li>
+            <% end %><!-- if current_user -->
           </ul>
         </div>
       </div>
