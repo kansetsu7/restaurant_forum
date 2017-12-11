@@ -11,7 +11,7 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar-fixed-top my-nav navbar navbar-default">
-      <div class="container">
+      <div class="container" id="nav-container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -28,22 +28,22 @@
                 <% if current_user.role == 'admin' %>
                   <% if request.url.include? 'admin' %>
                     <!-- Computer Upload by Andrejs Kirma from the Noun Project -->
-                    <%= link_to "前台視角", root_path %>
+                    <%= link_to "進入前台", root_path %>
                   <% else %>
                   <!-- Computer Download by Andrejs Kirma from the Noun Project -->
                     <%= link_to "進入後台", admin_restaurants_path %>
                   <% end %>
                 <% end %>
               </li>
-              <li>
-                <span>
-                  <p><%= current_user.email %></p>
-                  <% if current_user.role == 'admin' %>
-                    <p>管理員</p>
-                  <% else %>  
-                    <p>一般使用者</p>
-                  <% end %>
-                </span>
+              <li id="non-hover">
+                  <a>
+                    <%= current_user.email %>
+                    <% if current_user.role == 'admin' %>
+                      (管理員)
+                    <% else %>  
+                      (一般使用者)
+                    <% end %>
+                  </a>
               </li>
               <li>
                 <%= link_to('修改密碼', edit_user_registration_path) %>
@@ -61,18 +61,21 @@
         </div>
       </div>
     </nav>
-<!--  -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
-    <% if current_user %>
-     Hi, <%= current_user.email %>
-       <%= link_to('登出', destroy_user_session_path, method: :delete) %> |
-       <%= link_to('修改密碼', edit_user_registration_path) %>
-     <% else %>
-       <%= link_to('註冊', new_user_registration_path) %> |
-       <%= link_to('登入', new_user_session_path) %>
+
+<!-- Dismissible Alert -->
+    <% unless notice == nil %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= notice %>
+      </div>
     <% end %>
+    <% unless alert == nil %>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= alert %>yooooo
+      </div>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
