@@ -1,3 +1,26 @@
 div.container:not(#nav-container){
-  margin-top: 50px;
+  margin-top: 60px;
+}
+
+.navbar-default .navbar-nav > li.non-hover > a:hover{
+  color: #777;
+}
+
+.navbar-brand{
+  font-family: 'Shrikhand', cursive;
+  font-size: 40px;
+}
+
+.navbar-nav > li.with_icon > a{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nav-icon{
+  height: 30px;
+  width: 30px;
+}
+
+.glyphicon.glyphicon-log-out{
+  font-size: 25px;
 }

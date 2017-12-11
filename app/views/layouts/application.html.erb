@@ -3,9 +3,10 @@
   <head>
     <title>RestautantForum</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
   </head>
 
   <body>
@@ -23,34 +24,36 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="pull-right nav navbar-nav">
             <% if current_user %>
-              <li>
+              <li class="with_icon">
                 <!-- Button for admin to switch between front and back -->
                 <% if current_user.role == 'admin' %>
                   <% if request.url.include? 'admin' %>
                     <!-- Computer Upload by Andrejs Kirma from the Noun Project -->
-                    <%= link_to "進入前台", root_path %>
+                    <%= link_to  root_path do %>
+                    <!-- si-glyph-person-door-man.svg -->
+                      <%= "#{image_tag("change.svg", class: "nav-icon")} switch view".html_safe %>
+                    <% end %>
                   <% else %>
-                  <!-- Computer Download by Andrejs Kirma from the Noun Project -->
-                    <%= link_to "進入後台", admin_restaurants_path %>
+                    <%= link_to admin_restaurants_path do %>
+                      <%= "#{image_tag("change.svg", class: "nav-icon")} switch view".html_safe %>
+                    <% end %>
                   <% end %>
                 <% end %>
               </li>
-              <li id="non-hover">
+              <li class="non-hover">
                   <a>
                     <%= current_user.email %>
-                    <% if current_user.role == 'admin' %>
-                      (管理員)
-                    <% else %>  
-                      (一般使用者)
-                    <% end %>
+                    <%= "(Admin)" if current_user.role == 'admin' %>
                   </a>
               </li>
-              <li>
-                <%= link_to('修改密碼', edit_user_registration_path) %>
+              <li class="with_icon">
+                <%= link_to(edit_user_registration_path) do %>
+                  <%= "#{image_tag("key.svg", class: "nav-icon")} Edit password".html_safe %>
+                <% end %>
               </li>
-              <li>
+              <li class="with_icon">
                 <%= link_to destroy_user_session_path, method: :delete do  %>
-                  <i class="glyphicon glyphicon-log-out"></i>
+                  <i class="glyphicon glyphicon-log-out nav-glyphicon"></i>
                 <% end %>
               </li>
             <% else %>
@@ -64,6 +67,8 @@
     <div class="container">
       <%= render partial: "admin/restaurants/alert" %>   
       <%= yield %>
+
+      <div>The "key" Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     </div>
   </body>
 </html>
