@@ -61,21 +61,9 @@
         </div>
       </div>
     </nav>
-
-<!-- Dismissible Alert -->
-    <% unless notice == nil %>
-      <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= notice %>
-      </div>
-    <% end %>
-    <% unless alert == nil %>
-      <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= alert %>yooooo
-      </div>
-    <% end %>
-    
-    <%= yield %>
+    <div class="container">
+      <%= render partial: "admin/restaurants/alert" %>   
+      <%= yield %>
+    </div>
   </body>
 </html>
