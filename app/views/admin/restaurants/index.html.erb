@@ -1,12 +1,13 @@
 
 <h1 class="text-center">Restaurants management</h1>
 <!-- some sorting elements -->
+<br>
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
     <table class="table table-striped">
       <tr>
-        <td><%= sortable('Name', @current_title) %></td>
-        <td><%= sortable('Category', @current_title) %></td>
+        <td><%= sortable('name', @current_title) %></td>
+        <td><%= sortable('category', @current_title) %></td>
         <td></td>
         <td></td>
         <td></td>
@@ -24,7 +25,6 @@
     <%= paginate @restaurants %>
     <%= link_to 'New Restaurant', new_admin_restaurant_path() %>
 
-    <p class="text-left">Click attributes to sort</p>
   </div>
 </div>
 

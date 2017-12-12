@@ -59,7 +59,7 @@ class Admin::RestaurantsController < ApplicationController
 
   def sort_column
     # if there's no sort params then order by name
-    Restaurant.column_names.include?(params[:sort]) ? params[:sort] : "Name"
+    Restaurant.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
 
   def sort_direction
