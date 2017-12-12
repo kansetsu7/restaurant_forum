@@ -1,5 +1,5 @@
 
-<h1 class="text-center">Restaurants management</h1>
+<h1 class="text-center">Manager Mode</h1>
 <!-- some sorting elements -->
 <br>
 <div class="row">
@@ -7,23 +7,23 @@
     <table class="table table-striped">
       <tr>
         <td><%= sortable('name', @current_title) %></td>
-        <td><%= sortable('category', @current_title) %></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td colspan="3">
+          <%= link_to new_admin_restaurant_path() do %>
+            <%= "#{image_tag("add-restaurant.svg", class: "nav-icon")}New Restaurant".html_safe %>
+
+          <% end %>
+        </td>
       </tr>
     <% @restaurants.each do |restaurant| %>
       <tr>
         <td><%= restaurant.name %></td>
-        <td><%= restaurant.category %></td>
-        <td><%= link_to 'Show', admin_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Delete', admin_restaurant_path(restaurant), method: :delete, data:{confirm:"Are you sure?"} %></td>
+        <td><%= link_to 'Show', admin_restaurant_path(restaurant), :class => "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_admin_restaurant_path(restaurant), :class => "btn btn-default" %></td>
+        <td><%= link_to 'Delete', admin_restaurant_path(restaurant), method: :delete, data:{confirm:"Are you sure?"}, :class => "btn btn-danger" %></td>
       </tr>
     <% end %>
     </table>
-    <%= paginate @restaurants %>
-    <%= link_to 'New Restaurant', new_admin_restaurant_path() %>
+    <div class="text-center"><%= paginate @restaurants %></div>
 
   </div>
 </div>
