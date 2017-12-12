@@ -24,3 +24,11 @@ div.container:not(#nav-container){
 .glyphicon.glyphicon-log-out{
   font-size: 25px;
 }
+
+.table > tbody > tr > td{
+  vertical-align: middle;
+}
+
+.footer{
+  background-color: #e7e7e7;
+}
