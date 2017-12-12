@@ -2,9 +2,12 @@ class Admin::RestaurantsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
   before_action :set_restaurant ,only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @restaurants = Restaurant.page(params[:page]).per(10)
+    # @restaurants = Restaurant.page(params[:page]).per(10)
+    @restaurants = Restaurant.order(sort_column + ' ' + sort_direction).page(params[:page]).per(10)
+    @current_title = sort_column
   end
 
   def new
@@ -52,5 +55,14 @@ class Admin::RestaurantsController < ApplicationController
 
   def set_restaurant
     @restaurant = Restaurant.find(params[:id])
+  end
+
+  def sort_column
+    # if there's no sort params then order by name
+    Restaurant.column_names.include?(params[:sort]) ? params[:sort] : "Name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
