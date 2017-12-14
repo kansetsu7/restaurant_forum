@@ -1,12 +1,14 @@
 
 <h1 class="text-center ">Manager Mode</h1>
+<div class="text-center">
+  <%= link_to "Restaurants",admin_restaurants_path %> | <%= link_to "Categories", admin_categories_path %>
+</div>
 <!-- some sorting elements -->
-<br>
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
     <table class="table table-striped">
       <tr>
-        <th>#</td>
+        <th>#</th>
         <td><%= sortable('name', @current_title) %></td>
         <td colspan="2">
           <%= link_to new_admin_restaurant_path() do %>

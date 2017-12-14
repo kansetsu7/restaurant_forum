@@ -1,0 +1,21 @@
+<h1 class="text-center ">Restaurant Categories</h1>
+<div class="text-center">
+  <%= link_to "Restaurants",admin_restaurants_path %> | <%= link_to "Categories", admin_categories_path %>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <table class="table table-striped">
+      <tr>
+        <td>#</td>
+        <td>Category Name</td>
+      </tr>
+      <% @categories.each do |category| %>
+        <tr>
+          <th scope="row"><%= category.id %></th>
+          <td><%= category.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
