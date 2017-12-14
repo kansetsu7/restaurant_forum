@@ -5,7 +5,6 @@ class Admin::RestaurantsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    # @restaurants = Restaurant.page(params[:page]).per(10)
     @restaurants = Restaurant.order(sort_column + ' ' + sort_direction).page(params[:page]).per(10)
     @current_title = sort_column
   end
@@ -50,7 +49,7 @@ class Admin::RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, :description, :image)
+    params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, :description, :image, :category_id)
   end
 
   def set_restaurant
