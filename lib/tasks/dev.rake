@@ -13,12 +13,16 @@ namespace :dev do
     puts "have created fake restaurant"
     puts "now you have #{Restaurant.count} restaurants data"
   end
-  task admin: :environment do
+  task users: :environment do
     User.destroy_all
     User.create!(
       email: "admin@admin.com",
       password: "123456",
       role: "admin"
+    )
+    User.create!(
+      email: "guest@guest.com",
+      password: "123456"
     )
   end
 end
