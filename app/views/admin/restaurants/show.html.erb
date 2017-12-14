@@ -1,10 +1,31 @@
-<h1><%= @restaurant.name %></h1>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <table class="table">
+      <tr>
+        <td><h1 class="text-center"><%= @restaurant.name %></h1></td>
+      </tr>
+      <tr>
+        <td><%= image_tag @restaurant.image, width: '600px' %></td>
+      </tr>
+      <tr>
+        <td>
+          Opening Hours: <%= @restaurant.opening_hours %> <br>
+          Tel: <%= @restaurant.tel %> <br>
+          Address: <%= @restaurant.address %>
+        </td>
+      </tr>
+      <tr>
+        <td>Description: <br> <%= @restaurant.description %></td>
+      </tr>
+    </table>
+    <%= link_to admin_restaurants_path, class: "btn btn-default" do %>
+      <%= "#{image_tag("return.svg", class: "nav-icon")} Back to index".html_safe %>
+    <% end %>
+  </div>
+</div>
 
-Opening Hours: <%= @restaurant.opening_hours %> <br>
-Tel: <%= @restaurant.tel %> <br>
-Address: <%= @restaurant.address %> <br>
-Description: <%= @restaurant.description %> <br>
-<%= image_tag @restaurant.image, width: '600px' %>
+
+
+
 <br>
 
-<%= link_to 'Back to index', admin_restaurants_path %>

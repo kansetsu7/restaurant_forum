@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
   </head>
 
   <body>
@@ -29,31 +30,29 @@
                 <!-- Button for admin to switch between front and back -->
                 <% if current_user.role == 'admin' %>
                   <% if request.url.include? 'admin' %>
-                    <!-- Computer Upload by Andrejs Kirma from the Noun Project -->
-                    <%= link_to  root_path do %>
-                    <!-- si-glyph-person-door-man.svg -->
+                    <%= link_to  root_path, class: "nav-text" do %>
                       <%= "#{image_tag("change.svg", class: "nav-icon")} switch view".html_safe %>
                     <% end %>
                   <% else %>
-                    <%= link_to admin_restaurants_path do %>
+                    <%= link_to admin_restaurants_path, class: "nav-text" do %>
                       <%= "#{image_tag("change.svg", class: "nav-icon")} switch view".html_safe %>
                     <% end %>
                   <% end %>
                 <% end %>
               </li>
               <li class="non-hover">
-                  <a>
+                  <a class="nav-text">
                     <%= current_user.email %>
                     <%= "(Admin)" if current_user.role == 'admin' %>
                   </a>
               </li>
               <li class="with_icon">
-                <%= link_to(edit_user_registration_path) do %>
+                <%= link_to(edit_user_registration_path, class: "nav-text") do %>
                   <%= "#{image_tag("key.svg", class: "nav-icon")} Edit password".html_safe %>
                 <% end %>
               </li>
-              <li class="with_icon">
-                <%= link_to destroy_user_session_path, method: :delete do  %>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-text" do  %>
                   <i class="glyphicon glyphicon-log-out nav-glyphicon"></i>
                 <% end %>
               </li>
