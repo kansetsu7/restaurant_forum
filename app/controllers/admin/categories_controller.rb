@@ -1,6 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
+  before_action :set_category ,only: [:update, :destroy]
 
   def index
     @categories = Category.all
@@ -18,14 +19,13 @@ class Admin::CategoriesController < ApplicationController
       flash[:notice] = "category \"#{@category.name}\" was successfully created"
       redirect_to admin_categories_path
     else
-      flash.now[:alert] = "category was failed to create"
       @categories = Category.all
+      flash.now[:alert] = "category was failed to create"
       render :index
     end
   end
 
   def update
-    set_category
     if @category.update(category_params)
       redirect_to admin_categories_path
       flash[:notice] = "category \"#{@category.name}\" was successfully updated"
@@ -34,6 +34,12 @@ class Admin::CategoriesController < ApplicationController
       @categories = Category.all
       render :index
     end
+  end
+
+  def destroy
+    @category.destroy
+    flash[:alert] = "category was successfully deleted"
+    redirect_to admin_categories_path
   end
 
   private
