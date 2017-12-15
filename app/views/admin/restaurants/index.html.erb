@@ -10,7 +10,8 @@
       <tr>
         <th>#</th>
         <td><%= sortable('name', @current_title) %></td>
-        <td colspan="2">
+        <td>Category</td>
+        <td>
           <%= link_to new_admin_restaurant_path() do %>
             <%= "#{image_tag("add-restaurant.svg", class: "nav-icon")}New Restaurant".html_safe %>
 
