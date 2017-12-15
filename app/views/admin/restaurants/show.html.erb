@@ -9,7 +9,11 @@
       </tr>
       <tr>
         <td>
-          [<%= @restaurant.category.name %>] <br>
+          <% if @restaurant.category_name.nil? %>
+            [未分類] <br>
+          <% else %>
+            [<%= @restaurant.category_name %>] <br>
+          <% end %>
           Opening Hours: <%= @restaurant.opening_hours %> <br>
           Tel: <%= @restaurant.tel %> <br>
           Address: <%= @restaurant.address %>

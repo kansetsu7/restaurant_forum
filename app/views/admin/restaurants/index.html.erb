@@ -21,7 +21,12 @@
       <tr>
         <th scope="row"><%= restaurant.id %></td>
         <td><%= restaurant.name %></td>
-        <td>[<%= restaurant.category.name %>]</td>
+        <% if restaurant.category_name.nil? %>
+          <td>[未分類]</td>
+        <% else %>
+          <td>[<%= restaurant.category_name %>]</td>  
+        <% end %>
+        
         <td>
           <%= link_to 'Show', admin_restaurant_path(restaurant), :class => "btn btn-default" %>
           <%= link_to 'Edit', edit_admin_restaurant_path(restaurant), :class => "btn btn-default" %>
