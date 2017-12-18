@@ -62,4 +62,13 @@ h1, label{
   padding: 10px;
 }
 
+.nav-pills {
+    text-align:center;
+}
+
+.nav-pills > li {
+    float:none;
+    display:inline-block;
+}
+
 
