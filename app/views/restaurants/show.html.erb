@@ -1,28 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1><%= @restaurant.name %></h1>
-      <p>[<%= @restaurant.category.name %>]</p>
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="text-center"><%= @restaurant.name %></h1>
+    <p class="text-center">[<%= @restaurant.category.name %>]</p>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
+    <br>
+    <div class="well">
+      <ul class="list-unstyled">
+        <li><b>Opening Hour:</b> <%= @restaurant.opening_hours %></li>
+        <li><b>Tel:</b> <%= @restaurant.tel %></li>
+        <li><b>Address:</b> <%= @restaurant.address %></li>
+      </ul>
     </div>
-
-    <div class="col-md-4">
-      <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
-      <br>
-      <div class="well">
-        <ul class="list-unstyled">
-          <li><strong>Opening Hour:</strong> <%= @restaurant.opening_hours %></li>
-          <li><strong>Tel:</strong> <%= @restaurant.tel %></li>
-          <li><strong>Address:</strong> <%= @restaurant.address %></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <%= simple_format @restaurant.description %>
-    </div>
-
-    <div class="clearfix"></div>
-
-    <hr>
-
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <%= simple_format @restaurant.description %>
+  </div>
+  <hr>
+  <div class="col-md-12 text-center">
+    <%= link_to admin_restaurants_path, class: "btn btn-default" do %>
+      <%= "#{image_tag("return.svg", class: "nav-icon")} Back to index".html_safe %>
+    <% end %>
   </div>
 </div>

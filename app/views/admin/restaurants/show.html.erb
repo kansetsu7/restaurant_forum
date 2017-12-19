@@ -1,36 +1,33 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <table class="table">
-      <tr>
-        <td><h1 class="text-center"><%= @restaurant.name %></h1></td>
-      </tr>
-      <tr>
-        <td><%= image_tag @restaurant.image, width: '600px' %></td>
-      </tr>
-      <tr>
-        <td>
-          <% if @restaurant.category_name.nil? %>
-            [未分類] <br>
-          <% else %>
-            [<%= @restaurant.category_name %>] <br>
-          <% end %>
-          Opening Hours: <%= @restaurant.opening_hours %> <br>
-          Tel: <%= @restaurant.tel %> <br>
-          Address: <%= @restaurant.address %>
-        </td>
-      </tr>
-      <tr>
-        <td>Description: <br> <%= @restaurant.description %></td>
-      </tr>
-    </table>
+  <div class="col-md-12">
+    <h1 class="text-center"><%= @restaurant.name %></h1>
+    <p class="text-center">
+      <% if @restaurant.category_name.nil? %>
+        [未分類] <br>
+      <% else %>
+        [<%= @restaurant.category_name %>] <br>
+      <% end %>
+    </p>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
+    <br>
+    <div class="well">
+      <ul class="list-unstyled">
+        <li><b>Opening Hour:</b> <%= @restaurant.opening_hours %></li>
+        <li><b>Tel:</b> <%= @restaurant.tel %></li>
+        <li><b>Address:</b> <%= @restaurant.address %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <%= simple_format @restaurant.description %>
+  </div>
+  <hr>
+  <div class="col-md-12 text-center">
     <%= link_to admin_restaurants_path, class: "btn btn-default" do %>
       <%= "#{image_tag("return.svg", class: "nav-icon")} Back to index".html_safe %>
     <% end %>
   </div>
 </div>
-
-
-
-
-<br>
-
