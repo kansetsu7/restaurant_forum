@@ -3,12 +3,17 @@ div.container:not(#nav-container){
 }
 
 .navbar-default .navbar-nav > li.non-hover > a:hover{
-  color: #777;
+  color: black;
 }
 
-.navbar-brand{
+.navbar-default{
+  background-color: #f5f5f5;
+}
+
+.navbar-default .navbar-brand{
   font-family: 'Shrikhand', cursive;
   font-size: 40px;
+  color: #ff4e50;
 }
 
 .navbar-nav > li.with_icon > a{
@@ -42,7 +47,7 @@ div.container:not(#nav-container){
   vertical-align: middle;
 }
 
-h1, label{
+h1, h3, label, p.description{
   font-family: 'Comfortaa', cursive;
 }
 
@@ -62,6 +67,19 @@ h1, label{
   padding: 10px;
 }
 
+.card:hover{
+  color: black;
+  text-decoration: none;
+}
+
+.card{
+  color: black;
+}
+
+.restaurant-item:hover{
+  box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2)
+}
+
 .nav-pills {
     text-align:center;
 }
@@ -71,4 +89,11 @@ h1, label{
     display:inline-block;
 }
 
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+  background-color: #c50027;
+}
 
+.nav > li > a:hover{
+  background-color: #ff4e50;
+  color: white;
+}
