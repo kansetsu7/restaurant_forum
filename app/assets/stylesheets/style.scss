@@ -30,7 +30,7 @@ div.container:not(#nav-container){
   font-size: 20px;
 }
 
-.table > tbody > tr > td{
+.table > tbody > tr > td, .table > tbody > tr > th{
   vertical-align: middle;
   font-family: 'Comfortaa', cursive;
 }

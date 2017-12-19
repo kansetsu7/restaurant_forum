@@ -3,19 +3,18 @@
 <div class="text-center">
   <%= link_to "Restaurants",admin_restaurants_path %> | <%= link_to "Categories", admin_categories_path %>
 </div>
-<%= @current_title %>
 <!-- some sorting elements -->
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
     <table class="table table-striped">
       <tr>
-        <th>#</th>
-        <td><%= sortable('name', @current_title) %></td>
-        <td><%= sortable('category', @current_title) %></td>
+        <th><%= sortable('ID', @current_title) %></th>
+        <td><%= sortable('Name', @current_title) %></td>
+        <td><%= sortable('Category', @current_title) %></td>
         <!-- <td>Category</td> -->
         <td>
           <%= link_to new_admin_restaurant_path() do %>
-            <%= "#{image_tag("add-restaurant.svg", class: "nav-icon")}New Restaurant".html_safe %>
+            <%= "#{image_tag("add-restaurant.svg", class: "nav-icon")} New Restaurant".html_safe %>
 
           <% end %>
         </td>

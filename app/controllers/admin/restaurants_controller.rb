@@ -5,6 +5,7 @@ class Admin::RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.order(sort_column + ' ' + sort_direction).page(params[:page]).per(10)
+    # @restaurants = Restaurant.order('id').page(params[:page]).per(10)
     @current_title = current_title
   end
 
@@ -57,8 +58,8 @@ class Admin::RestaurantsController < ApplicationController
 
   def sort_column
     # if there's no sort params then order by name
-    # Restaurant.column_names.include?(params[:sort]) ? params[:sort] : "name"
-    params[:sort] == "category" ? "category_id" : "name"
+    return "category_id" if params[:sort] == "Category"
+    params[:sort] == 'name' ? 'name' : 'id' 
   end
 
   def sort_direction
@@ -66,6 +67,6 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def current_title
-    %w[name category].include?(params[:sort]) ? params[:sort] : "name"
+    %w[ID Name Category].include?(params[:sort]) ? params[:sort] : "ID"
   end
 end
