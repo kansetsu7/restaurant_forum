@@ -17,4 +17,14 @@ module ApplicationHelper
     end
   end
 
+  def sort_name(current_direction)
+    if current_direction == 'asc'
+      direction = 'desc'
+      icon_direction = ''
+    else
+      direction = 'asc'
+      icon_direction = "-alt"
+    end
+    link_to("Sort<span class='glyphicon glyphicon-sort-by-alphabet#{icon_direction}'></span>".html_safe, root_path(:direction => direction), class: "btn btn-default")
+  end
 end
