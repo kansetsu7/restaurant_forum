@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :restaurants, only: [:index, :show]
   resources :categories, only: :show
+  resources :credit, only: :index 
 
   namespace :admin do
     resources :restaurants
