@@ -1,5 +1,5 @@
 <!-- restaurants list，有多寫restaurant-item的class style -->
-<% @restaurants.each do |restaurant| %>
+<% @restaurants.each_with_index do |restaurant, i| %>
   <div class="col-sm-6 col-md-4">
     <%= link_to restaurant_path(restaurant), class: "card" do  %>
       <div class="restaurant-item">
@@ -12,6 +12,7 @@
       </div>
     <% end %>
   </div>
+  <%= clearfixer(i) %>
 <% end %>
   
 <!-- 有generate kaminari paginate bootstrap style -->
