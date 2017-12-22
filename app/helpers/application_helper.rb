@@ -18,6 +18,7 @@ module ApplicationHelper
   end
 
   def sort_name(current_direction)
+
     if current_direction == 'asc'
       direction = 'desc'
       icon_direction = ''
@@ -25,10 +26,13 @@ module ApplicationHelper
       direction = 'asc'
       icon_direction = "-alt"
     end
+
     if current_page?(root_url)
       return link_to("Sort<span class='glyphicon glyphicon-sort-by-alphabet#{icon_direction}'></span>".html_safe, root_path(:direction => direction), class: "btn btn-default") 
+
     elsif current_page?(controller: 'categories', action: 'show')
       link_to("Sort<span class='glyphicon glyphicon-sort-by-alphabet#{icon_direction}'></span>".html_safe, category_path(:id => get_id, :direction => direction), class: "btn btn-default")
+    
     end
     
   end
@@ -37,7 +41,7 @@ module ApplicationHelper
     return '<div class="clearfix hidden-xs"></div>'.html_safe if i == 5
     if i.odd?
       '<div class="clearfix hidden-xs hidden-md"></div>'.html_safe
-    elsif (i+1)%3 == 0
+    elsif (i + 1 ) % 3 == 0
       '<div class="clearfix hidden-xs hidden-sm"></div>'.html_safe
     end
   end

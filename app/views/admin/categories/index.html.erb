@@ -1,6 +1,6 @@
-<h1 class="text-center ">Restaurant Categories</h1>
+<h1 class="text-center">Restaurant Categories</h1>
 <div class="text-center">
-  <%= link_to "Restaurants",admin_restaurants_path %> | <%= link_to "Categories", admin_categories_path %>
+  <%= link_to 'Restaurants',admin_restaurants_path %> | <%= link_to 'Categories', admin_categories_path %>
 </div>
 
 <div class="row">
@@ -32,7 +32,7 @@
           <th scope="row"><%= category.id %></th>
           <td><%= category.name %></td>
           <td>
-            <%= link_to "Edit", admin_categories_path(id: category.id), :class => "btn btn-default" %>
+            <%= link_to 'Edit', admin_categories_path(id: category.id), :class => "btn btn-default" %>
             <%= link_to 'Delete', admin_category_path(category), method: :delete, data:{confirm:"Are you sure?\nThere's #{category.restaurants.size} associated restaurants.\nThey will change to default: #{@default_category.name}"}, :class => "btn btn-danger" %>  
             </td>
         </tr>

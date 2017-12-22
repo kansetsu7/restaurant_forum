@@ -21,7 +21,7 @@ class Admin::CategoriesController < ApplicationController
       redirect_to admin_categories_path
     else
       @categories = Category.all
-      flash.now[:alert] = "category was failed to create"
+      flash.now[:alert] = 'category was failed to create'
       render :index
     end
   end
@@ -31,7 +31,7 @@ class Admin::CategoriesController < ApplicationController
       redirect_to admin_categories_path
       flash[:notice] = "category \"#{@category.name}\" was successfully updated"
     else
-      flash.now[:alert] = "category was failed to update"
+      flash.now[:alert] = 'category was failed to update'
       @categories = Category.all
       render :index
     end
@@ -39,7 +39,7 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    flash[:alert] = "category was successfully deleted"
+    flash[:alert] = 'category was successfully deleted'
     redirect_to admin_categories_path
   end
 

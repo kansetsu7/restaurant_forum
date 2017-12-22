@@ -16,10 +16,10 @@ class Admin::RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
-      flash[:notice] = "restaurant was successfully created"
+      flash[:notice] = 'restaurant was successfully created'
       redirect_to admin_restaurants_path
     else
-      flash.now[:alert] = "restaurant was failed to create"
+      flash.now[:alert] = 'restaurant was failed to create'
       render :new
     end
   end
@@ -36,14 +36,14 @@ class Admin::RestaurantsController < ApplicationController
       redirect_to admin_restaurant_path(@restaurant)
     else
       render :edit
-      flash[:alert] = "restaurant was failed to update"
+      flash[:alert] = 'restaurant was failed to update'
     end
   end
 
   def destroy
     @restaurant.destroy
     redirect_to admin_restaurants_path
-    flash[:alert] = "restaurant was deleted"
+    flash[:alert] = 'restaurant was deleted'
   end
 
   private
@@ -58,15 +58,15 @@ class Admin::RestaurantsController < ApplicationController
 
   def sort_column
     # if there's no sort params then order by name
-    return "category_id" if params[:sort] == "Category"
+    return 'category_id' if params[:sort] == 'Category'
     params[:sort] == 'Name' ? 'name' : 'id' 
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
   def current_title
-    %w[ID Name Category].include?(params[:sort]) ? params[:sort] : "ID"
+    %w[ID Name Category].include?(params[:sort]) ? params[:sort] : 'ID'
   end
 end
