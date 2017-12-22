@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category ,only: [:show]
+  helper_method :get_id
 
   def show
     @categories = Category.all
@@ -15,6 +16,10 @@ class CategoriesController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def get_id
+    params[:id]
   end
 
 end
