@@ -11,7 +11,11 @@
   </div>
 
   <div class="col-md-8 col-md-offset-2">
-    <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
+    <% if @restaurant.image? %>
+      <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
+    <% else %> 
+      <span class="glyphicon glyphicon-picture"></span>[沒有圖片]
+    <% end %>
     <br>
     <div class="well">
       <ul class="list-unstyled">
