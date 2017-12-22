@@ -25,10 +25,10 @@ module ApplicationHelper
       direction = 'asc'
       icon_direction = "-alt"
     end
-    if current_page?(controller: 'categories', action: 'show')
+    if current_page?(root_url)
+      return link_to("Sort<span class='glyphicon glyphicon-sort-by-alphabet#{icon_direction}'></span>".html_safe, root_path(:direction => direction), class: "btn btn-default") 
+    elsif current_page?(controller: 'categories', action: 'show')
       link_to("Sort<span class='glyphicon glyphicon-sort-by-alphabet#{icon_direction}'></span>".html_safe, category_path(:id => get_id, :direction => direction), class: "btn btn-default")
-    else
-      link_to("Sort<span class='glyphicon glyphicon-sort-by-alphabet#{icon_direction}'></span>".html_safe, root_path(:direction => direction), class: "btn btn-default")
     end
     
   end
