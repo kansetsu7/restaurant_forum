@@ -3,11 +3,11 @@
   <div class="col-sm-6 col-md-4">
     <%= link_to restaurant_path(restaurant), class: "card" do  %>
       <div class="restaurant-item">
-        <% if restaurant.image %>
+        <% if restaurant.image? %>
           <!--<%= image_tag restaurant.image, class: "img-responsive center-block" %>-->
-          <% for i in 0..20 %>
-            <% if image_path(restaurant.image).include?('/'+i.to_s+'.jpg') %>
-              <%= image_tag(('/seed_img/'+i.to_s+'.jpg'), class: "img-responsive center-block") %>
+          <% for img_id in 0..20 %>
+            <% if image_path(restaurant.image).include?('/'+img_id.to_s+'.jpg') %>
+              <%= image_tag(('/seed_img/'+img_id.to_s+'.jpg'), class: "img-responsive center-block") %>
             <% end %>
           <% end %>
         <% else %> 
