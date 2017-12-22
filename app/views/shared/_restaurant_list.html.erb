@@ -4,7 +4,12 @@
     <%= link_to restaurant_path(restaurant), class: "card" do  %>
       <div class="restaurant-item">
         <% if restaurant.image? %>
-          <%= image_tag restaurant.image, class: "img-responsive center-block" %>
+          <!--<%= image_tag restaurant.image, class: "img-responsive center-block" %>-->
+          <% for i in 0..20 %>
+            <% if image_path(restaurant.image).include?('/'+i.to_s+'.jpg') %>
+              <%= image_tag(('/seed_img/'+i.to_s+'.jpg'), class: "img-responsive center-block") %>
+            <% end %>
+          <% end %>
         <% else %> 
           <span class="glyphicon glyphicon-picture"></span>[沒有圖片]
         <% end %>
