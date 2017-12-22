@@ -5,6 +5,7 @@
       <div class="restaurant-item">
         <% if restaurant.image? %>
           <!--<%= image_tag restaurant.image, class: "img-responsive center-block" %>-->
+          <%= image_path(restaurant.image) %>
           <% for i in 0..20 %>
             <% if image_path(restaurant.image).include?('/'+i.to_s+'.jpg') %>
               <%= image_tag(('/seed_img/'+i.to_s+'.jpg'), class: "img-responsive center-block") %>
