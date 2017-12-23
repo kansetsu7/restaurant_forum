@@ -3,7 +3,7 @@
   <div class="col-sm-6 col-md-4">
     <%= link_to restaurant_path(restaurant), class: "card" do  %>
       <div class="restaurant-item">
-        <%= show_img(restaurant.image, restaurant.image?) %>
+        <%= show_img(restaurant.image) %>
         <div class="caption">
           <h3><%= restaurant.name %></h3>
           <p class="label label-default"><%= restaurant.category.name %><p>
