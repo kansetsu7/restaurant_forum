@@ -11,16 +11,7 @@
   </div>
 
   <div class="col-md-8 col-md-offset-2">
-    <% if @restaurant.image? %>
-      <!--<%= image_tag @restaurant.image, class: "img-responsive center-block" %>-->
-      <% for img_id in 0..20 %>
-        <% if image_path(@restaurant.image).include?('/'+img_id.to_s+'.jpg') %>
-          <%= image_tag(('/seed_img/'+img_id.to_s+'.jpg'), class: "img-responsive center-block") %>
-        <% end %>
-      <% end %>
-    <% else %> 
-      <span class="glyphicon glyphicon-picture"></span>[沒有圖片]
-    <% end %>
+    <%= show_img(@restaurant.image) %>
     <br>
     <div class="well">
       <ul class="list-unstyled">
