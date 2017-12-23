@@ -5,6 +5,7 @@
       <div class="restaurant-item">
         <%= File.exist?('public'+image_path(restaurant.image)) %>
         <%= File.directory?('public'+image_path(restaurant.image)) %>
+        <%= restaurant.image? %>
         <% if File.exist?('public'+image_path(restaurant.image)) && !File.directory?('public'+image_path(restaurant.image)) %>
           <!--<%= image_tag restaurant.image, class: "img-responsive center-block" %>-->
           <% for img_id in 0..20 %>
