@@ -3,9 +3,9 @@
   <div class="col-sm-6 col-md-4">
     <%= link_to restaurant_path(restaurant), class: "card" do  %>
       <div class="restaurant-item">
-        <%= restaurant.image? %>
-        <%= restaurant.image %>
-        <% if restaurant.image? %>
+        <%= File.exist?('public'+image_path(restaurant.image)) %>
+        <%= File.directory?('public'+image_path(restaurant.image)) %>
+        <% if File.exist?('public'+image_path(restaurant.image)) && !File.directory?('public'+image_path(restaurant.image)) %>
           <!--<%= image_tag restaurant.image, class: "img-responsive center-block" %>-->
           <% for img_id in 0..20 %>
             <% if image_path(restaurant.image).include?('/'+img_id.to_s+'.jpg') %>
@@ -25,7 +25,6 @@
   </div>
   <%= clearfixer(i) %>
 <% end %>
-  
 <!-- 有generate kaminari paginate bootstrap style -->
 <div class="col-sm-12">
   <div class="text-center">
