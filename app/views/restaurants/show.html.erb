@@ -19,6 +19,20 @@
     <%= simple_format @restaurant.description %>
   </div>
   <hr>
+</div>
+
+<div class="row">
+  <%= form_for [@restaurant, @comment] do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, placeholder: "Leave a message", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-primary" %>
+      <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+    </div>
+  <% end %>
+
+  <hr>
   <div class="col-md-12 text-center">
     <%= link_to :back, class: "btn btn-default" do %>
       <%= "#{image_tag("return.svg", class: "nav-icon")} Back".html_safe %>
