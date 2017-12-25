@@ -1,4 +1,5 @@
 <div class="row">
+  <!-- restaurant information -->
   <div class="col-md-12">
     <h1 class="text-center"><%= @restaurant.name %></h1>
     <p class="text-center">[<%= @restaurant.category.name %>]</p>
@@ -16,27 +17,42 @@
     </div>
   </div>
   <div class="col-md-8 col-md-offset-2">
-    <%= simple_format @restaurant.description %>
-  </div>
-  <hr>
-</div>
+    <%= simple_format @restaurant.description %> 
+    <hr>
+  </div> 
 
-<div class="row">
-  <%= form_for [@restaurant, @comment] do |f| %>
-    <div class="form-group">
-      <%= f.text_area :content, placeholder: "Leave a message", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit class: "btn btn-primary" %>
-      <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
-    </div>
+  <!-- show comments -->
+  <% @restaurant.comments.each do |comment| %>
+    <div class="col-md-8 col-md-offset-2">
+      <h4><%= comment.user.email.split('@')[0] %></h4>
+      <p><%= simple_format comment.content %></p>
+      <p class="text-muted">
+        <em><%= time_ago_in_words(comment.created_at) %> ago</em>
+      </p>
+      <hr>
+    </div> 
   <% end %>
 
+  <!-- form for comment -->
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for [@restaurant, @comment] do |f| %>
+      <div class="form-group">
+        <%= f.text_area :content, placeholder: "Leave a message", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
   <hr>
+
+  <!-- button : back -->
   <div class="col-md-12 text-center">
     <%= link_to :back, class: "btn btn-default" do %>
       <%= "#{image_tag("return.svg", class: "nav-icon")} Back".html_safe %>
     <% end %>
   </div>
   <br>
+
 </div>
