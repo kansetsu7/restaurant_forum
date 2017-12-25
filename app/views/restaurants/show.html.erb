@@ -27,7 +27,10 @@
       <h4><%= comment.user.email.split('@')[0] %></h4>
       <p><%= simple_format comment.content %></p>
       <p class="text-muted">
-        <em><%= time_ago_in_words(comment.created_at) %> ago</em>
+        <em>about <%= time_ago_in_words(comment.created_at) %> ago</em>
+        <% if current_user.admin? %>
+          <%= link_to 'Delete', restaurant_comment_path(@restaurant, comment), method: :delete %>
+        <% end %>
       </p>
       <hr>
     </div> 
@@ -44,8 +47,8 @@
         <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
       </div>
     <% end %>
+    <hr>
   </div>
-  <hr>
 
   <!-- button : back -->
   <div class="col-md-12 text-center">
