@@ -106,6 +106,11 @@ h1, h3, label, p.description{
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+.float-right{
+  float: right;
+}
+
 /*custom navbar collapse setup*/
 @media (max-width: 992px) {
   .navbar-header {
