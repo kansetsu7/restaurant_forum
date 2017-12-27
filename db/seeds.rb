@@ -23,7 +23,3 @@ User.create(
   password: "123456",
   role: "admin"
 )
-User.create(
-  email: "guest@guest.com",
-  password: "123456"
-)

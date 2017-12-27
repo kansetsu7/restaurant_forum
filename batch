@@ -1,0 +1,6 @@
+rails db:drop
+rails db:migrate
+rails db:seed
+rails dev:fake_restaurant
+rails dev:fake_user
+rails dev:fake_comment

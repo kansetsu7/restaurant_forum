@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226075322) do
+ActiveRecord::Schema.define(version: 20171227064908) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20171226075322) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
+    t.string "name", null: false
     t.text "intro"
     t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true

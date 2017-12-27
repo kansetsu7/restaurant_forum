@@ -20,8 +20,8 @@ namespace :dev do
   # fake user
   task fake_user: :environment do
    User.where(role: nil).destroy_all
-   20.times do
-      User.create!(email: FFaker::Internet.email,
+   for i in 1..20 do
+      User.create!(email: "user#{i}@email.com",
       password: '000000',
       avatar: File.open(File.join(Rails.root, "/public/avatar/avatar#{rand(1...8)}.jpg")),
       )      
