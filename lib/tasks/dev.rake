@@ -21,10 +21,9 @@ namespace :dev do
   task fake_user: :environment do
    User.where(role: nil).destroy_all
    20.times do
-      file_name = rand(0..1) == 1 ? File.open(File.join(Rails.root, "/public/avatar/avatar#{rand(1...8)}.jpg")) : nil
       User.create!(email: FFaker::Internet.email,
       password: '000000',
-      avatar: file_name,
+      avatar: File.open(File.join(Rails.root, "/public/avatar/avatar#{rand(1...8)}.jpg")),
       )      
    end
    puts "have created fake user"

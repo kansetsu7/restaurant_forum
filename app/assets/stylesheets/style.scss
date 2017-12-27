@@ -111,6 +111,14 @@ h1, h3, label, p.description{
   float: right;
 }
 
+.avatar{
+  max-height: 300px;
+}
+
+.fake-avatar{
+  width: 300px;
+}
+
 /*custom navbar collapse setup*/
 @media (max-width: 992px) {
   .navbar-header {

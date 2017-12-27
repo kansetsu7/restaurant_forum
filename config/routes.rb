@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: :show
   resources :credit, only: :index 
-  resources :users, only: :show
+  resources :users, only: [:show, :edit, :update]
 
   namespace :admin do
     resources :restaurants

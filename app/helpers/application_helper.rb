@@ -54,4 +54,12 @@ module ApplicationHelper
     '<span class="glyphicon glyphicon-picture"></span>[沒有圖片]'.html_safe
   end
 
+  def show_avatar(img)
+    for img_id in 1..7
+      include_path = '/avatar'+img_id.to_s+'.jpg'
+      return image_tag(('/avatar'+include_path), class: "img-responsive center-block avatar") if image_path(img).include?(include_path)
+    end
+    image_tag('avatar.svg', class: 'fake-avatar')
+  end
+
 end
