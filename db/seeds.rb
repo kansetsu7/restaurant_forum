@@ -20,6 +20,8 @@ puts "Category created!"
 #Default user: admin and guest
 User.create(
   email: "admin@admin.com",
+  name: "=BOSS=",
   password: "123456",
   role: "admin"
 )
+puts "\"Admin\" created!"

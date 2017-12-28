@@ -22,8 +22,9 @@ namespace :dev do
    User.where(role: nil).destroy_all
    for i in 1..20 do
       User.create!(email: "user#{i}@email.com",
-      password: '000000',
-      avatar: File.open(File.join(Rails.root, "/public/avatar/avatar#{rand(1...8)}.jpg")),
+        name: "user#{i}",
+        password: '000000',
+        avatar: File.open(File.join(Rails.root, "/public/avatar/avatar#{rand(1...8)}.jpg")),
       )      
    end
    puts "have created fake user"

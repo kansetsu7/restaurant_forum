@@ -1,17 +1,18 @@
-
 <div class="row">
   <div class="col-xs-12 col-sm-6 avatar-container">
     <!--  col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-1 -->
     <%= show_avatar(@user.avatar) %>
   </div>
   <div class="col-xs-12 col-sm-6">
-    <h1><%= @user.name.nil? ? @user.email.split('@')[0] : @user.name %></h2>
+    <h1><%= @user.name %></h1>
     <p><b><%= @user.email %></b></p>
     <p><%= @user.intro %></p>
-    <%= link_to('Edit profile', edit_user_path(@user), class: 'btn btn-default') if @user == current_user %>
+    <% if @user == current_user %>
+      <%= link_to('Edit profile', edit_user_path(@user), class: 'btn btn-default') %>
+      <%= link_to(edit_user_registration_path, class: "nav-text btn btn-default") do %>
+        <%= "#{image_tag("key.svg", class: "nav-icon")} Edit password".html_safe %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
-<%= link_to(edit_user_registration_path, class: "nav-text") do %>
-  <%= "#{image_tag("key.svg", class: "nav-icon")} Edit password".html_safe %>
-<% end %>

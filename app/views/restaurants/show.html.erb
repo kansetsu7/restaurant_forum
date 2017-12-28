@@ -24,7 +24,7 @@
   <!-- show comments -->
   <% @restaurant.comments.each do |comment| %>
     <div class="col-md-8 col-md-offset-2">
-      <h4><%= comment.user.email.split('@')[0] %></h4>
+      <h4><%= comment.user.name %></h4>
       <p><%= simple_format comment.content %></p>
       <p class="text-muted">
         <em>about <%= time_ago_in_words(comment.created_at) %> ago</em>

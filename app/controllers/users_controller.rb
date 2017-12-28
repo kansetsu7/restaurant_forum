@@ -32,7 +32,14 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :intro, :avatar)
+    # if user didn't specify their name, set email name as default
+    set_user
+    puts "----here: \n#{params[:user][:name]}\nend----"
+    if params[:user][:name] == ""
+      params[:user][:name] = @user.email.split('@')[0]
+    end
+      puts "name = #{params[:user][:name]}"
+    return params.require(:user).permit(:name, :intro, :avatar)
   end
 
 end
