@@ -1,3 +1,4 @@
+<!-- show user info -->
 <div class="row">
   <div class="col-xs-12 col-sm-6 avatar-container">
     <!--  col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-1 -->
@@ -11,6 +12,27 @@
       <%= link_to('Edit profile', edit_user_path(@user), class: 'btn btn-default') %>
       <%= link_to(edit_user_registration_path, class: "nav-text btn btn-default") do %>
         <%= "#{image_tag("key.svg", class: "nav-icon")} Edit password".html_safe %>
+      <% end %>
+    <% end %>
+  </div>
+
+  
+  
+  
+</div><br> 
+
+<!-- show commented restaurants -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @commented_restaurants.count %>已評論餐廳</h3>
+  </div>
+  <div class="panel-body">
+    <% @commented_restaurants.each do |restaurant| %>
+        <%= link_to restaurant_path(restaurant), class: "card" do  %>
+        <div class="my-restaurant">
+          <%= show_restaurant_img(restaurant.image, 'commented-restaurants') %>
+          <p class="text-center"><%= restaurant.name %></p>
+        </div>
       <% end %>
     <% end %>
   </div>

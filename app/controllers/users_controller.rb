@@ -2,7 +2,10 @@ class UsersController < ApplicationController
   before_action :set_user ,only: [:show, :edit, :update]
 
   def show
-    
+    @commented_restaurants = @user.restaurants.distinct
+    puts "====commented_restaurants===="
+    puts @commented_restaurants
+    puts "====commented_restaurants===="
   end
 
   def edit

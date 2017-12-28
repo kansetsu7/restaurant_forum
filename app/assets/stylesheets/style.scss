@@ -119,6 +119,22 @@ h1, h2, h3, label, p.description{
   width: 300px;
 }
 
+.my-restaurant{
+  float: left;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 5px 5px;
+}
+
+.commented-restaurants{
+  max-height: 100px;
+}
+
+.my-restaurant:hover{
+  box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2)
+}
+
 /*custom navbar collapse setup*/
 @media (max-width: 992px) {
   .navbar-header {
