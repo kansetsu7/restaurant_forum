@@ -38,11 +38,11 @@ module ApplicationHelper
   end
 
   def clearfixer(i)
-    return '<div class="clearfix hidden-xs hidden-lg"></div>'.html_safe if i == 5
+    return '<div class="clearfix hidden-xs"></div>'.html_safe if i == 5
     if i.odd?
       '<div class="clearfix hidden-xs hidden-md hidden-lg"></div>'.html_safe
     elsif (i + 1 ) % 3 == 0
-      '<div class="clearfix hidden-xs hidden-sm hidden-lg"></div>'.html_safe
+      '<div class="clearfix hidden-xs hidden-sm"></div>'.html_safe
     end
   end
 
