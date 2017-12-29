@@ -72,4 +72,12 @@ module ApplicationHelper
 
   end
 
+  def show_username_link(user)
+    if user.name.nil?
+      '[帳號已被刪除]'
+    else
+      link_to user.name, user_path(user.id)
+    end
+  end
+
 end
