@@ -62,4 +62,14 @@ module ApplicationHelper
     image_tag('avatar.svg', class: 'fake-avatar')
   end
 
+  def show_navtabs(tab)
+
+    if (current_page?(controller: 'restaurants', action: 'feed') && tab == 'feed') || (current_page?(root_path) && tab == 'root')
+      return '<li role=presentation class=active>'.html_safe
+    end
+
+    '<li role=presentation>'.html_safe
+
+  end
+
 end
