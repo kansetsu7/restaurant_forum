@@ -1,0 +1,17 @@
+<div class="row">
+  <h1><%= @restaurant.name %>'s Dashboard</h1>
+  <hr>
+  <ul>
+    <li>有 <%= @restaurant.comments.count %> 筆評論</li>
+    <li>這家餐廳的平均價位為＄ＸＸＸ</li>
+    <li>有ＸＸ人收藏此餐廳</li>
+  </ul>
+
+  <!-- button : back -->
+  <div class="col-md-12 text-center">
+    <%= link_to :back, class: "btn btn-default" do %>
+      <%= "#{image_tag("return.svg", class: "nav-icon")} Back".html_safe %>
+    <% end %>
+  </div>
+  <br>
+</div>
