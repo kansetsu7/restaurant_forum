@@ -1,22 +1,40 @@
 <%= render partial: "navtabs" %> 
-<h1>餐廳最新動態</h1>
-<div>
-  <h3>最新餐廳</h3>
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h1>餐廳最新動態</h1>
+    <!-- newest restaurant -->
+    <div class="col-xs-12  col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">最新餐廳</h3>
+        </div>
+        <div class="panel-body">
+          <% @recent_restaurants.each do |restaurant| %>
+            <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+            <p><%= show_category_name(restaurant.category) %></p>
+            <%= truncate(restaurant.description, length: 60) %>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-  <% @recent_restaurants.each do |restaurant| %>
-    <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-    <p><%= show_category_name(restaurant.category) %></p>
-    <%= restaurant.description %>
-    <hr>
-  <% end %>
-</div>
-
-<div>
-  <h3>最新評論</h3>
-  <% @recent_comments.each do |comment| %>
-    <h4><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant) %></h4>
-    <p><%= comment.content %></p>
-    <p>by <%= show_username_link(comment.user) %></p>
-    <hr>
-  <% end %>
+    <!-- newest comment -->
+    <div class="col-xs-12  col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">最新評論</h3>
+        </div>
+        <div class="panel-body">
+          <% @recent_comments.each do |comment| %>
+            <h4><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant) %></h4>
+            <p><%= truncate(comment.content, length: 60) %></p>
+            <p>by <%= show_username_link(comment.user) %></p>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+  </div>
 </div>
