@@ -5,7 +5,7 @@
 
   <% @recent_restaurants.each do |restaurant| %>
     <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-    <p><%= restaurant.category.name %></p>
+    <p><%= show_category_name(restaurant.category) %></p>
     <%= restaurant.description %>
     <hr>
   <% end %>

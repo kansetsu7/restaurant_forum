@@ -1,11 +1,10 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_admin
   before_action :set_category ,only: [:update, :destroy]
-  before_action :set_category_to_default, only: [:destroy]
+  # before_action :set_category_to_default, only: [:destroy]
 
   def index
     @categories = Category.all
-    @default_category = Category.first
     if params[:id]
       set_category
     else
@@ -53,10 +52,10 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
-  def set_category_to_default
-    n_associated = @category.restaurants.size
-    @category.restaurants.each do |restaurant|
-      restaurant.update_attribute(:category_id, 1)
-    end
-  end
+  # def set_category_to_default
+  #   n_associated = @category.restaurants.size
+  #   @category.restaurants.each do |restaurant|
+  #     restaurant.update_attribute(:category_id, 1)
+  #   end
+  # end
 end

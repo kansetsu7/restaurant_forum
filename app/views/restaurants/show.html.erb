@@ -2,7 +2,7 @@
   <!-- restaurant information -->
   <div class="col-md-12">
     <h1 class="text-center"><%= @restaurant.name %></h1>
-    <p class="text-center">[<%= @restaurant.category.name %>]</p>
+    <p class="text-center">[<%= show_category_name(@restaurant.category) %>]</p>
   </div>
 
   <div class="col-md-8 col-md-offset-2">

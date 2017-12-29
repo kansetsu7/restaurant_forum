@@ -6,7 +6,7 @@
         <%= show_restaurant_img(restaurant.image) %>
         <div class="caption">
           <h3><%= restaurant.name %></h3>
-          <p class="label label-default"><%= restaurant.category.name %><p>
+          <p class="label label-default"><%= show_category_name(restaurant.category) %><p>
           <p class="description"><%= truncate(restaurant.description, length: 80) %></p>
         </div>
       </div>

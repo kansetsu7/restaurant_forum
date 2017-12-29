@@ -73,11 +73,16 @@ module ApplicationHelper
   end
 
   def show_username_link(user)
-    if user.name.nil?
-      '[帳號已被刪除]'
-    else
-      link_to user.name, user_path(user.id)
-    end
+    user.nil? ? '[帳號已被刪除]' : link_to(user.name, user_path(user.id))
+    # if user.name.nil? 
+    #   '[帳號已被刪除]'
+    # else
+    #   link_to user.name, user_path(user.id)
+    # end
+  end
+
+  def show_category_name(category)
+    category.nil? ? '[未分類]' : category.name
   end
 
 end
