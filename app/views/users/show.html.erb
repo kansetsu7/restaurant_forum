@@ -26,7 +26,8 @@
     <% @commented_restaurants.each do |restaurant| %>
         <%= link_to restaurant_path(restaurant), class: "card" do  %>
         <div class="my-restaurant">
-          <%= show_restaurant_img(restaurant.image, 'commented-restaurants') %>
+          <div><%= show_restaurant_img(restaurant.image) %></div>
+          <%#= restaurant.name %>
           <p class="text-center"><%= restaurant.name %></p>
         </div>
       <% end %>

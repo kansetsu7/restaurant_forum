@@ -63,6 +63,10 @@ h1, h2, h3, label, p.description{
   width: 100%;
 }
 
+.restaurant-item h3{
+  overflow: hidden;
+}
+
 .restaurant-item .caption {
   padding: 10px;
 }
@@ -120,15 +124,19 @@ h1, h2, h3, label, p.description{
 }
 
 .my-restaurant{
-  float: left;
+  display: inline-block;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 4px;
   margin: 5px 5px;
 }
 
-.commented-restaurants{
-  max-height: 100px;
+.my-restaurant > div {
+  height: 60px;
+}
+
+.my-restaurant img {
+  max-height: 100%;
 }
 
 .my-restaurant:hover{
