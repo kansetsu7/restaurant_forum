@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant ,only: [:show, :dashboard, :favorite, :unfavorite]
+  before_action :set_restaurant ,only: [:show, :dashboard, :favorite, :unfavorite, :like, :unlike]
   def index
     @restaurants = Restaurant.order('name ' + sort_direction).page(params[:page]).per(9)
     @categories = Category.all
@@ -26,6 +26,18 @@ class RestaurantsController < ApplicationController
   def unfavorite
     favorite = Favorite.where(restaurant: @restaurant, user: current_user)
     favorite.destroy_all
+    redirect_back(fallback_location: root_path)
+  end
+
+  def like
+    # @restaurant.likes.create!(user: current_user) #same as below
+    Like.create!(restaurant: @restaurant, user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unlike
+    like = Like.where(restaurant: @restaurant, user: current_user)
+    like.destroy_all
     redirect_back(fallback_location: root_path)
   end
 
