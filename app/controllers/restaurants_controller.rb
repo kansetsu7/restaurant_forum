@@ -20,12 +20,14 @@ class RestaurantsController < ApplicationController
 
   def favorite
     @restaurant.favorites.create!(user: current_user)
+    change_favorites_count(true)
     redirect_back(fallback_location: root_path)
   end
 
   def unfavorite
     favorite = Favorite.where(restaurant: @restaurant, user: current_user)
     favorite.destroy_all
+    change_favorites_count(false)
     redirect_back(fallback_location: root_path)
   end
 
@@ -41,6 +43,7 @@ class RestaurantsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+
   private
 
   def set_restaurant
@@ -50,4 +53,10 @@ class RestaurantsController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
+
+  def change_favorites_count(is_add)
+    variation = is_add ? 1 : -1
+    @restaurant.update_attribute(:favorites_count, @restaurant.favorites_count + variation)
+  end
+
 end

@@ -30,6 +30,9 @@
       <%= render partial: 'shared/favorite', locals: {restaurant: @restaurant} %>
       <!-- Like/Unlike btn -->
       <%= render partial: 'shared/like', locals: {restaurant: @restaurant} %>
+
+      <hr>
+      收藏人數： <b><%= @restaurant.favorites_count %></b> 人
     </div>  
 
     
