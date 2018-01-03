@@ -64,7 +64,9 @@ module ApplicationHelper
 
   def show_navtabs(tab)
 
-    if (current_page?(controller: 'restaurants', action: 'feed') && tab == 'feed') || (current_page?(root_path) && tab == 'root')
+    if ((current_page?(controller: 'restaurants', action: 'feed') && tab == 'feed') || 
+      (current_page?(root_path) && tab == 'root') || 
+      (current_page?(controller: 'restaurants', action: 'ranking') && tab == 'ranking'))
       return '<li role=presentation class=active>'.html_safe
     end
 

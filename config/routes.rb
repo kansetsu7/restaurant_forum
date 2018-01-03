@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     collection do
       get :feed
+      get :ranking
     end
 
     member do
