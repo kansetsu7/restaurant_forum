@@ -1,2 +1,28 @@
 <%= render partial: "navtabs" %> 
-yooo
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h1>Top 10 人氣餐廳</h1>(收藏數最高)
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <% @popular_restaurants.each do |restaurant| %>
+      <div class="col-xs-12  col-md-3">
+        <%= show_restaurant_img(restaurant.image) %>
+      </div>
+      <div class="col-xs-12  col-md-9">
+        <div>
+          <b><%= restaurant.name %></b>
+          <p>收藏數： <%= restaurant.favorites_count %></p>
+        </div>
+        <p><%= restaurant.description %></p>
+        <%= link_to 'Show', restaurant_path(restaurant), class: 'btn btn-default' %>
+        <!-- Favorite/Unfavorite btn -->
+        <%= render partial: 'shared/favorite', locals: {restaurant: restaurant} %>
+      </div>
+      <div class="clearfix hidden-xs"></div>
+      <hr>
+    <% end %>
+  </div>
+</div>
