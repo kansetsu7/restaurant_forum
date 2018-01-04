@@ -51,7 +51,7 @@ namespace :dev do
     Favorite.destroy_all
     puts "creating fake favorites..." 
     User.all.each do |u|
-     10.times do
+     20.times do
        u.favorites.create!(
         restaurant: Restaurant.all.sample,
        )      
