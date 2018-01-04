@@ -1,0 +1,4 @@
+<!-- button : back -->
+<%= link_to url_for(request.env["HTTP_REFERER"] || root_path), class: "btn btn-default" do %>
+  <%= "#{image_tag("return.svg", class: "nav-icon")} Back".html_safe %>
+<% end %>

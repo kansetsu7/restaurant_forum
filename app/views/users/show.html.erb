@@ -38,9 +38,7 @@
   <!-- button : back -->
 <div class="row">
   <div class="col-md-12 text-center">
-    <%= link_to :back, class: "btn btn-default" do %>
-      <%= "#{image_tag("return.svg", class: "nav-icon")} Back".html_safe %>
-    <% end %>
+    <%= render partial: '/shared/backBtn' %>
   </div>
 </div>
   <br>

@@ -41,7 +41,7 @@
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
-<%= link_to :back, class: "btn btn-default" do %>
-  <%= "#{image_tag("return.svg", class: "nav-icon")} Back".html_safe %>
-<% end %>
+<div class="text-center">
+  <%= render partial: '/shared/backBtn' %> <!-- back btn -->
+</div>
 <br>
