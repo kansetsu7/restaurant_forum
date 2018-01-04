@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     set_user
     puts "----here: \n#{params[:user][:name]}\nend----"
     if params[:user][:name] == ""
-      params[:user][:name] = @user.email.split('@')[0]
+      params[:user][:name] = @user.email.split('@').first
     end
       puts "name = #{params[:user][:name]}"
     return params.require(:user).permit(:name, :intro, :avatar)
