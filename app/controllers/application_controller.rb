@@ -14,13 +14,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    return until (params[:controller] == "devise/registrations" && (params[:action] == "create" || params[:action] == "update"))
-
-    # if user didn't specify their name, set email name as default
-    if params[:user][:name] == ""
-      params[:user][:name] = params[:user][:email].split('@').first
-    end
-
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end

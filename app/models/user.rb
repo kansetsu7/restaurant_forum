@@ -9,9 +9,16 @@ class User < ApplicationRecord
   has_many :favorited_restaurants, through: :favorites, source: :restaurant
   has_many :likes, dependent: :destroy
   has_many :liked_restaurants, through: :likes, source: :restaurant
+  before_save :ini_name
 
   mount_uploader :avatar, AvatarUploader
   def admin?
     self.role == "admin"
+  end
+
+  def ini_name
+    if self.name == ""
+      self.name = self.email.split('@').first
+    end
   end
 end
