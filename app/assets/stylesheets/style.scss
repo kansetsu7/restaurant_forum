@@ -51,6 +51,10 @@ h1, h2, h3, label, p.description{
   font-family: 'Comfortaa', cursive;
 }
 
+h1.inline{
+  display: inline-block;
+}
+
 .restaurant-item {
   border: 1px solid #ddd;
   border-radius: 4px;
