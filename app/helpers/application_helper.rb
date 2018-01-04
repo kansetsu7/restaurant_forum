@@ -66,7 +66,8 @@ module ApplicationHelper
 
     if ((current_page?(controller: 'restaurants', action: 'feed') && tab == 'feed') || 
       (current_page?(root_path) && tab == 'root') || 
-      (current_page?(controller: 'restaurants', action: 'ranking') && tab == 'ranking'))
+      (current_page?(controller: 'restaurants', action: 'ranking') && tab == 'ranking')) ||
+      (is_categories_show? && tab == 'root')
       return '<li role=presentation class=active>'.html_safe
     end
 
@@ -76,15 +77,14 @@ module ApplicationHelper
 
   def show_username_link(user)
     user.nil? ? '[帳號已被刪除]' : link_to(user.name, user_path(user.id))
-    # if user.name.nil? 
-    #   '[帳號已被刪除]'
-    # else
-    #   link_to user.name, user_path(user.id)
-    # end
   end
 
   def show_category_name(category)
     category.nil? ? '[未分類]' : category.name
+  end
+
+  def is_categories_show?
+    (params[:controller] == 'categories' && params[:action] == 'show' && Category.ids.include?(params[:id].to_i)) ? true : false
   end
 
 end
