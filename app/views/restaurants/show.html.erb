@@ -25,7 +25,9 @@
       <hr>
       
       <!-- Dashboard btn -->
-      <%= link_to 'Dashboard', dashboard_restaurant_path(@restaurant), class: "btn btn-primary" %>
+      <%= link_to dashboard_restaurant_path(@restaurant), class: "btn btn-primary" do %>
+        <%= fa_icon "dashboard", text: "Dashboard" %>
+      <% end %>
       <!-- Favorite/Unfavorite btn -->
       <%= render partial: 'shared/favorite', locals: {restaurant: @restaurant} %>
       <!-- Like/Unlike btn -->
