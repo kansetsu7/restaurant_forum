@@ -1,7 +1,11 @@
 <% if restaurant.is_liked?(current_user) %>
-  <%= link_to 'Unlike', unlike_restaurant_path(restaurant), method: :post, class: 'btn btn-info' %>
+  <%= link_to unlike_restaurant_path(restaurant), method: :post, class: 'btn btn-info' do %>
+    <%= fa_icon "heart", text: "Unlike" %>
+  <% end %>
 <% else %>
-  <%= link_to 'Like', like_restaurant_path(restaurant), method: :post, class: 'btn btn-primary' %>
+  <%= link_to like_restaurant_path(restaurant), method: :post, class: 'btn btn-primary' do %>
+    <%= fa_icon "heart-o", text: "Like" %>
+  <% end %>
 <% end %>
 
 
