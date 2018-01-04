@@ -4,3 +4,5 @@ rails db:seed
 rails dev:fake_restaurant
 rails dev:fake_user
 rails dev:fake_comment
+rails dev:fake_favorite
+rails dev:fake_like
