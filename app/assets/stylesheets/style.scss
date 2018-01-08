@@ -147,6 +147,17 @@ h1.inline{
   box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2)
 }
 
+.user-item {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.user-item:hover{
+  box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2);
+}
+
 /*custom navbar collapse setup*/
 @media (max-width: 992px) {
   .navbar-header {
