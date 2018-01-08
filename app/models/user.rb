@@ -23,4 +23,8 @@ class User < ApplicationRecord
       self.name = self.email.split('@').first
     end
   end
+
+  def is_following?(user)
+    self.followings.include?(user)
+  end
 end
