@@ -17,23 +17,70 @@
     <%= render partial: "shared/follow", locals: {user: @user} %> 
   </div>
 </div><br> 
+<hr>
 
-<!-- show commented restaurants -->
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= @commented_restaurants.count %>已評論餐廳</h3>
+<div class="row">
+  <!-- about users: followings and followers -->
+  <div class="col-md-3">
+
+    <!-- followings -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user.followings.count %> followings</h3>
+      </div>
+      <div class="panel-body">
+        <% @user.followings.each_with_index do |user, i| %>
+          <div class="followings">
+            <%= image_tag 'http://via.placeholder.com/300x300' %>
+            <%= link_to user.name, user_path(user) %>
+          </div>
+          <%= '<hr>'.html_safe unless i == @user.followings.size - 1 %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- followers -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user.followers.count %> followers</h3>
+      </div>
+      <div class="panel-body">
+        <% @user.followers.each_with_index do |user, i| %>
+          <div class="followings">
+            <%= image_tag 'http://via.placeholder.com/300x300' %>
+            <%= link_to user.name, user_path(user) %>
+          </div>
+          <%= '<hr>'.html_safe unless i == @user.followers.size - 1 %>
+        <% end %>
+      </div>
+    </div>
+
   </div>
-  <div class="panel-body">
-    <% @commented_restaurants.each do |restaurant| %>
-        <%= link_to restaurant_path(restaurant), class: "card" do  %>
-        <div class="my-restaurant">
-          <div><%= show_restaurant_img(restaurant.image) %></div>
-          <%#= restaurant.name %>
-          <p class="text-center"><%= restaurant.name %></p>
-        </div>
-      <% end %>
-    <% end %>
+
+  <!-- about restaurants: commented and favorited -->
+  <div class="col-md-9">
+
+    <!-- commented restaurants -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @commented_restaurants.count %>已評論餐廳</h3>
+      </div>
+      <div class="panel-body">
+        <% @commented_restaurants.each do |restaurant| %>
+            <%= link_to restaurant_path(restaurant), class: "card" do  %>
+            <div class="my-restaurant">
+              <div><%= show_restaurant_img(restaurant.image) %></div>
+              <%#= restaurant.name %>
+              <p class="text-center"><%= restaurant.name %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- favorited restaurants -->
   </div>
+
 </div>
 
   <!-- button : back -->

@@ -158,6 +158,10 @@ h1.inline{
   box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2);
 }
 
+.followings > img{
+  max-width: 60px;
+}
+
 /*custom navbar collapse setup*/
 @media (max-width: 992px) {
   .navbar-header {
