@@ -4,7 +4,7 @@ namespace :dev do
   task fake_restaurant: :environment do
     Restaurant.destroy_all
     puts "creating fake restaurants..."
-    500.times do |i|
+    100.times do |i|
       Restaurant.create!(name: FFaker::Name.first_name,
         opening_hours: FFaker::Time.datetime,
         tel: FFaker::PhoneNumber.short_phone_number,
