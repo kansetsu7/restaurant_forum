@@ -74,6 +74,30 @@ namespace :dev do
     puts "now you have #{Like.count} liked restaurants"
   end
 
+  task fake_followship: :environment do
+    Followship.destroy_all
+    puts "creating fake followship..." 
+    User.all.each do |u|
+      @users = User.all.shuffle
+      5.times do
+        u.followships.create!(
+        following: @users.pop,
+        )      
+      end     
+    end
+    puts "now you have #{Followship.count} followship"
+  end
+
+  task test: :environment do
+    puts "testing..." 
+    @users = User.all.shuffle
+    @users.each_with_index do |user, i| 
+      puts "== #{i} =="
+      puts @users.pop.name
+    end
+  end
+
+  #fake all data
   task fake_all: :environment do
     Rake::Task['db:migrate'].execute
     Rake::Task['db:seed'].execute
@@ -82,6 +106,7 @@ namespace :dev do
     Rake::Task['dev:fake_comment'].execute
     Rake::Task['dev:fake_favorite'].execute
     Rake::Task['dev:fake_like'].execute
+    Rake::Task['dev:fake_followship'].execute
   end
 
 end
