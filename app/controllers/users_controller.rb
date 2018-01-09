@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.page(params[:page]).per(12)
+
+    request.headers['Referer']
+    # this_page = request.original_url 
   end
 
   def show
@@ -34,6 +37,10 @@ class UsersController < ApplicationController
 
 
   private
+
+  def user_params
+    params.require(:user).permit(:name, :intro, :avatar)
+  end
 
   def set_user
     @user = User.find(params[:id])
