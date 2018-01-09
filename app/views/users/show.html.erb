@@ -14,6 +14,7 @@
         <%= "#{image_tag("key.svg", class: "nav-icon")} Edit password".html_safe %>
       <% end %>
     <% end %>
+    <%= render partial: "shared/follow", locals: {user: @user} %> 
   </div>
 </div><br> 
 
