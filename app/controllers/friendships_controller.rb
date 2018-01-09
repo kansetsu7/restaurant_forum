@@ -13,7 +13,9 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    
+    @friendship.destroy
+    flash[:alert] = 'Unfriended!'
+    redirect_back(fallback_location: root_path)
   end
 
   private
