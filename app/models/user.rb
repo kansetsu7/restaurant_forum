@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :followings, through: :followships
   has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverse_followships, source: :user
+  has_many :friendships
+  has_many :friends, through: :friendships
   before_save :ini_name
 
   mount_uploader :avatar, AvatarUploader
@@ -28,5 +30,9 @@ class User < ApplicationRecord
 
   def is_following?(user)
     self.followings.include?(user)
+  end
+
+  def friend?(user)
+    self.friends.include?(user)
   end
 end
