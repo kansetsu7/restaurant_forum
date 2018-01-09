@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @commented_restaurants = @user.restaurants.distinct
+    @favorited_restaurants = @user.favorited_restaurants
     puts "====commented_restaurants===="
     puts @commented_restaurants
     puts "====commented_restaurants===="

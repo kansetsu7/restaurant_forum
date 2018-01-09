@@ -79,6 +79,22 @@
     </div>
 
     <!-- favorited restaurants -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @favorited_restaurants.count %>收藏餐廳</h3>
+      </div>
+      <div class="panel-body">
+        <% @favorited_restaurants.each do |restaurant| %>
+            <%= link_to restaurant_path(restaurant), class: "card" do  %>
+            <div class="my-restaurant">
+              <div><%= show_restaurant_img(restaurant.image) %></div>
+              <%#= restaurant.name %>
+              <p class="text-center"><%= restaurant.name %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
 </div>
