@@ -59,42 +59,11 @@
 
   <!-- about restaurants: commented and favorited -->
   <div class="col-md-9">
-
     <!-- commented restaurants -->
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= @commented_restaurants.count %>已評論餐廳</h3>
-      </div>
-      <div class="panel-body">
-        <% @commented_restaurants.each do |restaurant| %>
-            <%= link_to restaurant_path(restaurant), class: "card" do  %>
-            <div class="my-restaurant">
-              <div><%= show_restaurant_img(restaurant.image) %></div>
-              <%#= restaurant.name %>
-              <p class="text-center"><%= restaurant.name %></p>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
+    <%= render partial: "shared/users_restaurants", locals: {restaurants: @commented_restaurants, title_text: '已評論餐廳'} %> 
     <!-- favorited restaurants -->
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= @favorited_restaurants.count %>收藏餐廳</h3>
-      </div>
-      <div class="panel-body">
-        <% @favorited_restaurants.each do |restaurant| %>
-            <%= link_to restaurant_path(restaurant), class: "card" do  %>
-            <div class="my-restaurant">
-              <div><%= show_restaurant_img(restaurant.image) %></div>
-              <%#= restaurant.name %>
-              <p class="text-center"><%= restaurant.name %></p>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+    
+    <%= render partial: "shared/users_restaurants", locals: {restaurants: @favorited_restaurants, title_text: '收藏的餐廳'} %> 
   </div>
 
 </div>
