@@ -3,17 +3,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.page(params[:page]).per(12)
-
-    request.headers['Referer']
-    # this_page = request.original_url 
   end
 
   def show
     @commented_restaurants = @user.restaurants.distinct
     @favorited_restaurants = @user.favorited_restaurants
-    puts "====commented_restaurants===="
-    puts @commented_restaurants
-    puts "====commented_restaurants===="
   end
 
   def edit
@@ -23,7 +17,7 @@ class UsersController < ApplicationController
   def update
     if @user != current_user
       flash.now[:alert] = 'Not able to edit other\'s profile!'
-      redirect_to :back
+      redirect_back(fallback_location: root_path)
     end
 
     if @user.update(user_params)
