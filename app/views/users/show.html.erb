@@ -26,8 +26,8 @@
   <div class="col-xs-12">
     <!-- commented restaurants -->
     <%= render partial: "shared/users_restaurants", locals: {restaurants: @commented_restaurants, title_text: '已評論餐廳', collapse_target: 'commented_restaurants'} %> 
+    
     <!-- favorited restaurants -->
-
     <%= render partial: "shared/users_restaurants", locals: {restaurants: @favorited_restaurants, title_text: '收藏的餐廳', collapse_target: 'favorited_restaurants'} %> 
   </div>
 </div>
@@ -38,7 +38,6 @@
     <!-- followings -->
     <%= render partial: "shared/users_relationships", locals: {relationships: @user.followings, title_text: 'followings', collapse_target: 'followings'} %> 
     
-
     <!-- followers -->
     <%= render partial: "shared/users_relationships", locals: {relationships: @user.followers, title_text: 'followers', collapse_target: 'followers'} %> 
 

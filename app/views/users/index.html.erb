@@ -13,6 +13,7 @@
           <%= image_tag 'http://via.placeholder.com/300x300', class: 'img-responsive center-block' %>
           <p><%= user.name %></p>
           <%= render partial: "shared/follow", locals: {user: user} %> 
+          <%= render partial: "shared/friend", locals: {user: user} %> 
         </div>
       <% end %>
     </div>  
