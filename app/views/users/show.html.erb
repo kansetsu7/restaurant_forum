@@ -25,10 +25,10 @@
 <div class="row">
   <div class="col-xs-12">
     <!-- commented restaurants -->
-    <%= render partial: "shared/users_restaurants", locals: {restaurants: @commented_restaurants, title_text: '已評論餐廳'} %> 
+    <%= render partial: "shared/users_restaurants", locals: {restaurants: @commented_restaurants, title_text: '已評論餐廳', collapse_target: 'commented_restaurants'} %> 
     <!-- favorited restaurants -->
 
-    <%= render partial: "shared/users_restaurants", locals: {restaurants: @favorited_restaurants, title_text: '收藏的餐廳'} %> 
+    <%= render partial: "shared/users_restaurants", locals: {restaurants: @favorited_restaurants, title_text: '收藏的餐廳', collapse_target: 'favorited_restaurants'} %> 
   </div>
 </div>
 
@@ -36,14 +36,14 @@
 <div class="row">
   <div class="col-xs-12">
     <!-- followings -->
-    <%= render partial: "shared/users_relationships", locals: {relationships: @user.followings, title_text: 'followings'} %> 
+    <%= render partial: "shared/users_relationships", locals: {relationships: @user.followings, title_text: 'followings', collapse_target: 'followings'} %> 
     
 
     <!-- followers -->
-    <%= render partial: "shared/users_relationships", locals: {relationships: @user.followers, title_text: 'followers'} %> 
+    <%= render partial: "shared/users_relationships", locals: {relationships: @user.followers, title_text: 'followers', collapse_target: 'followers'} %> 
 
     <!-- test all_friends -->
-    <%= render partial: "shared/users_relationships", locals: {relationships: @all_friends, title_text: 'all_friends'} %> 
+    <%= render partial: "shared/users_relationships", locals: {relationships: @all_friends, title_text: 'all_friends', collapse_target: 'all_friends'} %> 
 
   </div>
 

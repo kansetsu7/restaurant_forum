@@ -1,8 +1,14 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= relationships.count %> <%= title_text %></h3>
+    <h3 class="panel-title">
+      <%= relationships.count %> <%= title_text %>
+      <button type="button" class="collapsed" data-toggle="collapse" data-target=<%= "##{collapse_target}" %> aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </button>
+    </h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body collapse" id=<%= "#{collapse_target}" %>>
     <% relationships.each do |user| %>
         <%= link_to user_path(user), class: "card" do  %>
         <div class="my-restaurant">
