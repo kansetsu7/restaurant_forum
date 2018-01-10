@@ -16,7 +16,8 @@
     <% end %>
     <%= render partial: "shared/follow", locals: {user: @user} %> 
     <%= render partial: "shared/friend", locals: {user: @user} %> 
-
+    <p><%= @user.need_confirms.count %> unconfirmed friend request</p>
+    <p>waiting <%= @user.waiting_confirms.count %>request</p>
   </div>
 </div><br> 
 <hr>
