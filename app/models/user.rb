@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :followers, through: :inverse_followships, source: :user
   has_many :friendships
   has_many :friends, through: :friendships
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :invers_friends, through: :inverse_friendships, source: :user
   before_save :ini_name
 
   mount_uploader :avatar, AvatarUploader
