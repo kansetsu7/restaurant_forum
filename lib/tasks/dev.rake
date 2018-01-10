@@ -96,18 +96,36 @@ namespace :dev do
       5.times do
         u.friendships.create!(
         friend: @users.pop,
+        confirmed: false,
         )      
       end     
     end
     puts "now you have #{Friendship.count} friendship"
-  end  
+    Rake::Task['dev:chk_friendship'].execute
+  end 
+
+  task chk_friendship: :environment do
+    if Friendship.all.count == 0
+      puts 'Poor you. No friends...'      
+      return
+    end
+
+    puts "checking friendship..." 
+    Friendship.all.each do |f1|
+      Friendship.all.each do |f2|
+        if f1.user_id == f2.friend_id && f2.user_id == f1.friend_id
+          f1.update_attribute(:confirmed, true)
+        end
+      end
+    end
+    puts "#{Friendship.where(confirmed: true).count} friendship are confirmed "
+  end 
+
 
   task test: :environment do
     puts "testing..." 
-    @users = User.all.shuffle
-    @users.each_with_index do |user, i| 
-      puts "== #{i} =="
-      puts @users.pop.name
+    Friendship.all.each do |f|
+      puts "#{f.user_id} / #{f.friend_id}"
     end
   end
 
