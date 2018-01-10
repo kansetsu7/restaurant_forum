@@ -88,6 +88,20 @@ namespace :dev do
     puts "now you have #{Followship.count} followship"
   end
 
+  task fake_friendship: :environment do
+    Friendship.destroy_all
+    puts "creating fake friendship..." 
+    User.all.each do |u|
+      @users = User.all.shuffle
+      5.times do
+        u.friendships.create!(
+        friend: @users.pop,
+        )      
+      end     
+    end
+    puts "now you have #{Friendship.count} friendship"
+  end  
+
   task test: :environment do
     puts "testing..." 
     @users = User.all.shuffle
@@ -107,6 +121,7 @@ namespace :dev do
     Rake::Task['dev:fake_favorite'].execute
     Rake::Task['dev:fake_like'].execute
     Rake::Task['dev:fake_followship'].execute
+    Rake::Task['dev:fake_friendship'].execute
   end
 
 end
