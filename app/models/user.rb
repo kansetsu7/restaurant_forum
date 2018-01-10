@@ -37,4 +37,9 @@ class User < ApplicationRecord
   def friend?(user)
     self.friends.include?(user)
   end
+
+  def all_friends()
+    (self.invers_friends + self.friends).uniq
+  end
+
 end

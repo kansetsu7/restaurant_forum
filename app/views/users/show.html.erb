@@ -66,6 +66,21 @@
     <!-- favorited restaurants -->
 
     <%= render partial: "shared/users_restaurants", locals: {restaurants: @favorited_restaurants, title_text: '收藏的餐廳'} %> 
+
+
+    <!-- test all_friends -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @all_friends.count %> all_friends</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @all_friends.each do |user| %>
+            <li><%= link_to user.name, user_path(user) %></li>
+          <% end %>
+        </ul>        
+      </div>
+    </div>
   </div>
 
 </div>
