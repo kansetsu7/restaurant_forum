@@ -162,6 +162,12 @@ h1.inline{
   max-width: 60px;
 }
 
+.panel-toggle{
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
 /*custom navbar collapse setup*/
 @media (max-width: 992px) {
   .navbar-header {
