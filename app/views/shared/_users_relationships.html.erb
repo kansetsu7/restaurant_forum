@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= relationships.count %> <%= title_text %></h3>
+  </div>
+  <div class="panel-body">
+    <% relationships.each do |user| %>
+        <%= link_to user_path(user), class: "card" do  %>
+        <div class="my-restaurant">
+          <div><%= image_tag 'http://via.placeholder.com/300x300' %></div> <!-- user avatar -->
+          <p class="text-center"><%= user.name %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
