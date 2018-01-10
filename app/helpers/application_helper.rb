@@ -92,4 +92,12 @@ module ApplicationHelper
     (params[:controller] == 'users' && params[:action] == 'index') ? true : false
   end
 
+  def back_page
+    if session[:prev_url].nil? || request.referer != request.original_url
+      session[:prev_url] = request.referer
+    end
+    # request.headers['Referer'] = session[:prev_url]
+    response.headers['Referer'] = session[:prev_url]
+  end
+
 end
