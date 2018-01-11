@@ -1,7 +1,27 @@
 <% unless user == current_user %>
-  <% if current_user.friend?(user) %>
-    <%= link_to 'Unfriend', friendship_path(user), method: :delete, class: 'btn btn-info' %>
-  <% else %>
+
+  <% if current_user.friend?(user) %>   <!-- current_user sent friend request -->
+
+    <% if current_user.confirmed_friend?(user) %>
+      <!-- confirmed, current_user can unfriend -->
+      <div class='btn btn-info'>unfriend</div>
+    <% else %>
+      <!-- not confirmed, current_user can cancel it -->
+      <div class='btn btn-info'>cancel request</div>
+    <% end %>
+
+  <% elsif current_user.inverse_friend?(user) %>   <!-- current_user got friend request form target-->
+
+    <% if current_user.confirmed_inverse_friend?(user) %>
+      <!-- confirmed, current_user can unfriend -->
+      <div class='btn btn-info'>unfriend</div>
+    <% else %>
+      <!-- not confirmed, current_user can accept it -->
+      <div class='btn btn-info'>accept request</div>
+    <% end %>
+
+  <% else %>  <!-- both not in friendships db -->
     <%= link_to 'Friend', friendships_path(friend_id: user), method: :post, class: 'btn btn-primary' %>
   <% end %>
+
 <% end %>

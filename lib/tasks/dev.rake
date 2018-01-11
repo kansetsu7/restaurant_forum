@@ -93,6 +93,7 @@ namespace :dev do
     puts "creating fake friendship..." 
     User.all.each do |u|
       @users = User.all.shuffle
+      # @users = User.where.not(id: u.id).shuffle
       5.times do
         u.friendships.create!(
         friend: @users.pop,
@@ -124,9 +125,24 @@ namespace :dev do
 
   task test: :environment do
     puts "testing..." 
-    Friendship.all.each do |f|
-      puts "#{f.user_id} / #{f.friend_id}"
+
+    u1 = User.first
+    puts '==friends=='
+    u1.friendships.each do |f|
+      puts "#{f.friend_id} : #{f.confirmed}"
     end
+    puts '==inv_friends=='
+    u1.inverse_friendships.each do |f|
+      puts "#{f.user_id} : #{f.confirmed}"
+    end
+    puts '==unconfirmed?=='
+    puts "id: friend?, inv_friend?, confirmed_friend?, uconfirmed_inverse_friend?"
+    User.all.each do |u|
+      puts "#{u.id} : #{u1.friend?(u)}, #{u1.inverse_friend?(u)}, #{u1.confirmed_friend?(u)}, #{u1.confirmed_inverse_friend?(u)}"
+    end
+    # Friendship.all.each do |f|
+    #   puts "#{f.user_id} / #{f.friend_id}"
+    # end
   end
 
   #fake all data
