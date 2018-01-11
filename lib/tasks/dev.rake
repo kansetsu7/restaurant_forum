@@ -125,23 +125,38 @@ namespace :dev do
   task test: :environment do
     puts "testing..." 
 
-    u1 = User.first
-    puts '==friends=='
-    u1.friendships.each do |f|
-      puts "#{f.friend_id} : #{f.confirmed}"
+    ids = Array.new(0)
+    @user = User.first
+    puts "A==friends 我提出==A"
+    @user.friends.each do |fr|
+      puts fr.id
     end
-    puts '==inv_friends=='
-    u1.inverse_friendships.each do |f|
-      puts "#{f.user_id} : #{f.confirmed}"
+    puts "B==inv_friends 我接收==B"
+    @user.inverse_friends.each do |fr|
+      puts fr.id
     end
-    puts '==unconfirmed?=='
-    puts "id: friend?, inv_friend?, confirmed_friend?, uconfirmed_inverse_friend?"
-    User.all.each do |u|
-      puts "#{u.id} : #{u1.friend?(u)}, #{u1.inverse_friend?(u)}, #{u1.confirmed_friend?(u)}, #{u1.confirmed_inverse_friend?(u)}"
+    puts "B==need_confirms 需要我確認==B"
+    @user.need_confirms.each do |friendship|
+      ids.push(friendship.user_id)
+      puts friendship.user_id
     end
-    # Friendship.all.each do |f|
-    #   puts "#{f.user_id} / #{f.friend_id}"
-    # end
+    puts "B==need_confirms name==B"
+    @need_confirmers = @user.inverse_friends.where(id: ids)
+    @need_confirmers.each do |fr|
+      puts fr.name
+    end
+    ids = Array.new(0)
+    puts "A==waiting_confirms 等待別人確認==A"
+    @user.waiting_confirms.each do |friendship|
+      ids.push(friendship.friend_id)
+      puts friendship.friend_id
+    end
+    puts ids.inspect
+    puts "A==waiting_confirms name==A"
+    @waiting_confirmers = User.where(id: ids)
+    @waiting_confirmers.each do |fr|
+      puts fr.name
+    end
   end
 
   #fake all data

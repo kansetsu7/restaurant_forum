@@ -1,7 +1,6 @@
 <!-- show user info -->
 <div class="row">
   <div class="col-xs-12 col-sm-6 avatar-container">
-    <!--  col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-1 -->
     <%= show_avatar(@user.avatar) %>
   </div>
   <div class="col-xs-12 col-sm-6">
@@ -42,8 +41,8 @@
     <!-- followers -->
     <%= render partial: "shared/users_relationships", locals: {relationships: @user.followers, title_text: 'followers', collapse_target: 'followers'} %> 
 
-    <!-- test all_friends -->
-    <%= render partial: "shared/users_relationships", locals: {relationships: @all_friends, title_text: 'all_friends', collapse_target: 'all_friends'} %> 
+    <!-- all_friends -->
+    <%= render partial: "shared/users_relationships", locals: {relationships: @all_friends, title_text: 'all_friends', collapse_target: 'friends'} %> 
 
   </div>
 
