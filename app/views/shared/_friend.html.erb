@@ -4,7 +4,7 @@
 
     <% if current_user.confirmed_friend?(user) %>
       <!-- confirmed, current_user can unfriend -->
-      <div class='btn btn-info'>unfriend</div>
+      <%= link_to 'Unfriend', friendship_path(user), method: :delete, class: 'btn btn-danger' %>
     <% else %>
       <!-- not confirmed, current_user can cancel it -->
       <%= link_to 'Cancel request', cancel_friendship_path(user), method: :post, class: 'btn btn-primary' %>
