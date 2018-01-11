@@ -92,8 +92,7 @@ namespace :dev do
     Friendship.destroy_all
     puts "creating fake friendship..." 
     User.all.each do |u|
-      @users = User.all.shuffle
-      # @users = User.where.not(id: u.id).shuffle
+      @users = User.where.not(id: u.id).shuffle
       5.times do
         u.friendships.create!(
         friend: @users.pop,
