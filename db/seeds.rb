@@ -22,6 +22,7 @@ User.create(
   email: "admin@admin.com",
   name: "=BOSS=",
   password: "123456",
+  intro: "Who's your daddy!",
   role: "admin"
 )
 puts "\"Admin\" created!"
