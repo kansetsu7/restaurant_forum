@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
-  has_many :invers_friends, through: :inverse_friendships, source: :user
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
   before_save :ini_name
 
   mount_uploader :avatar, AvatarUploader
@@ -38,8 +38,22 @@ class User < ApplicationRecord
     self.friends.include?(user)
   end
 
+  def inverse_friend?(user)
+    self.inverse_friends.include?(user)
+  end
+
+  def confirmed_friend?(user)
+    fs = self.friendships.find_by(friend_id: user.id)
+    fs.nil? ? nil : fs.confirmed
+  end
+
+  def confirmed_inverse_friend?(user)
+    ifs = self.inverse_friendships.find_by(user_id: user.id)
+    ifs.nil? ? nil : ifs.confirmed
+  end
+
   def all_friends()
-    (self.invers_friends + self.friends).uniq
+    (self.inverse_friends + self.friends).uniq
   end
 
   # request form user
