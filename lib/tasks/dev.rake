@@ -78,7 +78,7 @@ namespace :dev do
     Followship.destroy_all
     puts "creating fake followship..." 
     User.all.each do |u|
-      @users = User.all.shuffle
+      @users = User.where.not(id: u.id).shuffle
       5.times do
         u.followships.create!(
         following: @users.pop,
