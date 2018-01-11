@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12">
+
+      there's <%= count_request %> requests:
+      <p><%= @user.need_confirms.count %> unconfirmed friend request</p>
+      <ul>
+        <% @user.need_confirms.each do |friendship| %>
+          <li>user id: <%= friendship.user_id %></li>
+        <% end %>
+      </ul>
+      <p>waiting <%= @user.waiting_confirms.count %>request</p>
+      <ul>
+        <% @user.waiting_confirms.each do |friendship| %>
+          <li>user id: <%= friendship.friend_id %></li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</div>

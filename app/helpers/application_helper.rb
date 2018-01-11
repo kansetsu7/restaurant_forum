@@ -100,4 +100,8 @@ module ApplicationHelper
     response.headers['Referer'] = session[:prev_url]
   end
 
+  def count_request
+    current_user.waiting_confirms.count + current_user.need_confirms.count
+  end
+
 end

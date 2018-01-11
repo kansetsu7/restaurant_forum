@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     member do
       post :cancel
       post :accept
+      get :check
     end
   end
 

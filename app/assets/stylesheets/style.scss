@@ -168,6 +168,15 @@ h1.inline{
   background-color: transparent;
 }
 
+.notification{
+  border: 1px solid;
+  border-radius: 25%;
+  padding: 0 2px 0 2px;
+  display: inline-block;
+  background-color: red;
+  color: white;
+}
+
 /*custom navbar collapse setup*/
 @media (max-width: 992px) {
   .navbar-header {

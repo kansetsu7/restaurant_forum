@@ -13,22 +13,12 @@
       <%= link_to(edit_user_registration_path, class: "nav-text btn btn-default") do %>
         <%= "#{image_tag("key.svg", class: "nav-icon")} Edit password".html_safe %>
       <% end %>
+      <%= link_to(check_friendship_path(@user), class: "nav-text btn btn-default") do %>
+        Friendship requests <div class="notification"><%= count_request %></div>
+      <% end %>
     <% end %>
     <%= render partial: "shared/follow", locals: {user: @user} %> 
     <%= render partial: "shared/friend", locals: {user: @user} %> 
-    <p><%= @user.need_confirms.count %> unconfirmed friend request</p>
-    <ul>
-      <% @user.need_confirms.each do |friendship| %>
-        <li>user id: <%= friendship.user_id %></li>
-      <% end %>
-    </ul>
-    <p>waiting <%= @user.waiting_confirms.count %>request</p>
-    <ul>
-      <% @user.waiting_confirms.each do |friendship| %>
-        <li>user id: <%= friendship.friend_id %></li>
-      <% end %>
-    </ul>
-  </div>
 </div><br> 
 <hr>
 
