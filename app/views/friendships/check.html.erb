@@ -3,9 +3,9 @@
 
       總共 <%= count_request %> 個交友請求:
       <!-- need_confirmers -->
-      <%= render partial: "shared/users_relationships", locals: {relationships: @need_confirmers, title_text: '對方提出的請求', collapse_target: 'need_confirmers'} %> 
+      <%= render partial: "shared/users_relationships", locals: {relationships: @unconfirmed_inverse_friends, title_text: '對方提出的請求', collapse_target: 'need_confirmers'} %> 
       <!-- need_confirmers -->
-      <%= render partial: "shared/users_relationships", locals: {relationships: @waiting_confirmers, title_text: '你提出的請求', collapse_target: 'waiting_confirmers'} %> 
+      <%= render partial: "shared/users_relationships", locals: {relationships: @unconfirmed_friends, title_text: '你提出的請求', collapse_target: 'waiting_confirmers'} %> 
     </div>
 
   </div>

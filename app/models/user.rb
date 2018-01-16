@@ -15,8 +15,16 @@ class User < ApplicationRecord
   has_many :followers, through: :inverse_followships, source: :user
   has_many :friendships
   has_many :friends, through: :friendships
+  has_many :confirmed_friendships, -> {where confirmed: true}, class_name: "Friendship"
+  has_many :unconfirmed_friendships, -> {where confirmed: false}, class_name: "Friendship"
+  has_many :confirmed_friends, through: :confirmed_friendships, source: :friend
+  has_many :unconfirmed_friends, through: :unconfirmed_friendships, source: :friend
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, source: :user
+  has_many :confirmed_inverse_friendships, -> {where confirmed: true}, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :unconfirmed_inverse_friendships, -> {where confirmed: false}, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :confirmed_inverse_friends, through: :confirmed_inverse_friendships, source: :user
+  has_many :unconfirmed_inverse_friends, through: :unconfirmed_inverse_friendships, source: :user
   before_save :ini_name
 
   mount_uploader :avatar, AvatarUploader
@@ -43,17 +51,16 @@ class User < ApplicationRecord
   end
 
   def confirmed_friend?(user)
-    fs = self.friendships.find_by(friend_id: user.id)
-    fs.nil? ? nil : fs.confirmed
+    self.confirmed_friendships.find_by(friend_id: user.id).nil? ? false : true
   end
 
   def confirmed_inverse_friend?(user)
-    ifs = self.inverse_friendships.find_by(user_id: user.id)
-    ifs.nil? ? nil : ifs.confirmed
+    self.confirmed_inverse_friendships.find_by(user_id: user.id).nil? ? false : true
   end
 
   def all_friends()
-    (self.inverse_friends + self.friends).uniq
+    # (self.inverse_friends + self.friends).uniq
+    self.confirmed_friends + self.confirmed_inverse_friends
   end
 
   # request form user
@@ -65,5 +72,7 @@ class User < ApplicationRecord
   def need_confirms
     self.inverse_friendships.where("confirmed = ?", false)
   end
+
+  
 
 end

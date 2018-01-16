@@ -133,14 +133,31 @@ namespace :dev do
     puts "#{Friendship.where(confirmed: true).count} friendship are confirmed "
   end 
 
-  task show_friend: :environment do
+  task show_friends: :environment do
     puts "show_friend..." 
-    @friendships = User.first.friendships.all#find_by(id: 15)
+    @friendships = User.first.friendships.all
     puts "friendship_id, user_id, friend_id, confirmed"
     @friendships.each do |friendship|
       puts "#{friendship.id}, #{friendship.user_id}, #{friendship.friend_id}, #{friendship.confirmed}"
     end
+    @friendships = User.first.inverse_friendships.all
+    puts "invfriendship_id, user_id, friend_id, confirmed"
+    @friendships.each do |friendship|
+      puts "#{friendship.id}, #{friendship.user_id}, #{friendship.friend_id}, #{friendship.confirmed}"
+    end
     # @u1 = (User.first.inverse_friends + User.first.friends).distinct
+  end
+
+  task confirmed_friends: :environment do
+    puts "show confirmed friendship..." 
+    @friends = User.first.unconfirmed_inverse_friends
+    @friends.each do |friend|
+      # puts "#{friend.user_id}, #{friend.friend_id}"
+      puts "#{friend.id}, #{friend.name}"
+    end  
+    # puts User.first.confirmed_inverse_friend?(User.find(6))
+    # puts User.first.confirmed_inverse_friend?(User.find(14))
+    # puts User.first.confirmed_inverse_friend?(User.find(3))
   end
 
   task test: :environment do
