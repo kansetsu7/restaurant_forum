@@ -104,6 +104,10 @@ namespace :dev do
     Rake::Task['dev:chk_friendship'].execute
   end 
 
+  # checking friendships
+  # there may have some duplicated friendships, in that case, the later one should be delete
+  # (e.g user1 have firendship with user3, and user3 also have friendship with user1)
+  # collect all duplicated friendships' id, then delete it.
   task chk_friendship: :environment do
     if Friendship.all.count == 0
       puts 'Poor you. No friends...'      
@@ -111,56 +115,46 @@ namespace :dev do
     end
 
     puts "checking friendship..." 
+    duplicated_friendships = Array.new(0)
     Friendship.all.each do |f1|
-      Friendship.all.each do |f2|
+      @operating_friendships = Friendship.all
+      @operating_friendships.each do |f2|
         if f1.user_id == f2.friend_id && f2.user_id == f1.friend_id
-          f1.update_attribute(:confirmed, true)
+          if f2.confirmed
+            duplicated_friendships.push(f2.id)
+          else
+            f2.update_attribute(:confirmed, true)
+            Friendship.find(f1.id).update_attribute(:confirmed, true)
+          end
         end
       end
     end
+    Friendship.destroy(duplicated_friendships) # delete duplicated firendships
     puts "#{Friendship.where(confirmed: true).count} friendship are confirmed "
   end 
 
+  task show_friend: :environment do
+    puts "show_friend..." 
+    @friendships = User.first.friendships.all#find_by(id: 15)
+    puts "friendship_id, user_id, friend_id, confirmed"
+    @friendships.each do |friendship|
+      puts "#{friendship.id}, #{friendship.user_id}, #{friendship.friend_id}, #{friendship.confirmed}"
+    end
+    # @u1 = (User.first.inverse_friends + User.first.friends).distinct
+  end
 
   task test: :environment do
     puts "testing..." 
-
-    ids = Array.new(0)
-    @user = User.first
-    puts "A==friends 我提出==A"
-    @user.friends.each do |fr|
-      puts fr.id
+    @friendships = User.first.confirmed_friendships.all
+    @friendships.each do |friendship|
+      puts "#{friendship.id}, #{friendship.user_id}, #{friendship.friend_id}"
     end
-    puts "B==inv_friends 我接收==B"
-    @user.inverse_friends.each do |fr|
-      puts fr.id
-    end
-    puts "B==need_confirms 需要我確認==B"
-    @user.need_confirms.each do |friendship|
-      ids.push(friendship.user_id)
-      puts friendship.user_id
-    end
-    puts "B==need_confirms name==B"
-    @need_confirmers = @user.inverse_friends.where(id: ids)
-    @need_confirmers.each do |fr|
-      puts fr.name
-    end
-    ids = Array.new(0)
-    puts "A==waiting_confirms 等待別人確認==A"
-    @user.waiting_confirms.each do |friendship|
-      ids.push(friendship.friend_id)
-      puts friendship.friend_id
-    end
-    puts ids.inspect
-    puts "A==waiting_confirms name==A"
-    @waiting_confirmers = User.where(id: ids)
-    @waiting_confirmers.each do |fr|
-      puts fr.name
-    end
+    # @u1 = (User.first.inverse_friends + User.first.friends).distinct
   end
 
   #fake all data
   task fake_all: :environment do
+    # Rake::Task['db:drop'].execute
     Rake::Task['db:migrate'].execute
     Rake::Task['db:seed'].execute
     Rake::Task['dev:fake_restaurant'].execute
