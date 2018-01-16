@@ -101,7 +101,7 @@ module ApplicationHelper
   end
 
   def count_request
-    current_user.waiting_confirms.count + current_user.need_confirms.count
+    current_user.unconfirmed_friends.count + current_user.unconfirmed_inverse_friends.count
   end
 
 end
