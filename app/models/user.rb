@@ -61,18 +61,6 @@ class User < ApplicationRecord
   def all_friends()
     # (self.inverse_friends + self.friends).uniq
     self.confirmed_friends + self.confirmed_inverse_friends
-  end
-
-  # request form user
-  def waiting_confirms
-    self.friendships.where("confirmed = ?", false)
-  end
-
-  # friend request from others
-  def need_confirms
-    self.inverse_friendships.where("confirmed = ?", false)
-  end
-
-  
+  end  
 
 end

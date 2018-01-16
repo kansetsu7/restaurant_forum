@@ -4,8 +4,6 @@ class FriendshipsController < ApplicationController
   before_action :set_inverse_friendship ,only: [:create, :accept, :destroy]
   before_action :set_target_user ,only: [:create, :destroy, :accept, :cancel]
   before_action :set_user ,only: [:check]
-  # before_action :set_need_confirmers ,only: [:check]
-  # before_action :set_waiting_confirmers ,only: [:check]
 
   def create
     if @inverse_friendship.nil? #target didn't sent request => you can friend them
@@ -89,22 +87,6 @@ class FriendshipsController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def set_need_confirmers
-    ids = Array.new(0)
-    @user.need_confirms.each do |friendship|
-      ids.push(friendship.user_id)
-    end
-    @need_confirmers = User.where(id: ids)
-  end
-
-  def set_waiting_confirmers
-    ids = Array.new(0)
-    @user.waiting_confirms.each do |friendship|
-      ids.push(friendship.friend_id)
-    end
-    @waiting_confirmers = User.where(id: ids)
   end
 
 end
